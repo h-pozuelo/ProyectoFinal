@@ -36,8 +36,8 @@ namespace Server.JwtFeatures
             var claims = new List<Claim>
             {
                 new Claim("Id", user.Id),
-                new Claim("Email", user.Email!),
-                new Claim("UserName", user.UserName!),
+                new Claim(ClaimTypes.Email, user.Email!),
+                new Claim(ClaimTypes.Name, user.UserName!),
                 new Claim("NombreCompleto", user.NombreCompleto!),
                 new Claim("FechaRegistro", user.FechaRegistro.ToString()),
             };

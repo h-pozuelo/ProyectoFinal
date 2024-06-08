@@ -28,21 +28,43 @@ namespace Client.Helpers
             // Si el valor del elemento "authToken" es nulo o está vacío...
             if (string.IsNullOrEmpty(savedToken)) return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
 
+            var claims = ParseClaimsFromJwt(savedToken);
+            var expiry = Convert.ToInt64(claims.SingleOrDefault(x => x.Type == "exp")!.Value);
+            var unixSeconds = DateTimeOffset.Now.ToUnixTimeSeconds();
+
+            if (expiry < unixSeconds)
+            {
+                await _localStorage.RemoveItemAsync("authToken");
+                return new AuthenticationState(new ClaimsPrincipal());
+            }
+
             // Si no es nulo ni está vacío añade la cabecera de autorización "bearer" con dicho valor al "HttpClient"
             // (Con "HttpClient" haremos peticiones a la API por lo que queremos estar autenticados)
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", savedToken);
 
-            return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity(ParseClaimsFromJwt(savedToken), "jwt")));
+            return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity(claims, "jwt")));
         }
 
-        public void MarkUserAsAuthenticated(string email)
+        //public void MarkUserAsAuthenticated(string email)
+        //{
+        //    var authenticatedUser = new ClaimsPrincipal(
+        //        new ClaimsIdentity(
+        //            new List<Claim>
+        //            {
+        //                new Claim(ClaimTypes.Name, email)
+        //            },
+        //            "apiauth"));
+        //    var authState = Task.FromResult(new AuthenticationState(authenticatedUser));
+        //    NotifyAuthenticationStateChanged(authState);
+        //}
+
+        public void MarkUserAsAuthenticated(string authToken)
         {
+            var claims = ParseClaimsFromJwt(authToken);
+
             var authenticatedUser = new ClaimsPrincipal(
                 new ClaimsIdentity(
-                    new List<Claim>
-                    {
-                        new Claim(ClaimTypes.Name, email)
-                    },
+                    claims,
                     "apiauth"));
             var authState = Task.FromResult(new AuthenticationState(authenticatedUser));
             NotifyAuthenticationStateChanged(authState);

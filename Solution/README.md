@@ -1009,3 +1009,93 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
     </main>
 </div>
 ```
+
+    - "Server" :
+
+        - "~/JwtFeatures/JwtHandler.cs" :
+```
+...
+namespace Server.JwtFeatures
+{
+    public class JwtHandler
+    {
+        ...
+        // Método que recupera los "Claims" del usuario recibido como parámetro
+        public List<Claim> GetClaims(Usuario user)
+        {
+            var claims = new List<Claim>
+            {
+                ...,
+                new Claim(ClaimTypes.Email, user.Email!),
+                new Claim(ClaimTypes.Name, user.UserName!),
+                ...
+            };
+
+            return claims;
+        }
+        ...
+    }
+}
+```
+
+    - "Client" :
+      (Para depurar una aplicación de tipo "Aplicación Blazor para WebAssembly" es necesario realizarlo con "IIS Server")
+
+        - "~/Helpers/ApiAuthenticationStateProvider.cs" :
+```
+...
+namespace Client.Helpers
+{
+    // Hereda de la clase "AuthenticationStateProvider"
+    public class ApiAuthenticationStateProvider : AuthenticationStateProvider
+    {
+        ...
+        public override async Task<AuthenticationState> GetAuthenticationStateAsync()
+        {
+            ...
+            var claims = ParseClaimsFromJwt(savedToken);
+            var expiry = Convert.ToInt64(claims.SingleOrDefault(x => x.Type == "exp")!.Value);
+            var unixSeconds = DateTimeOffset.Now.ToUnixTimeSeconds();
+
+            if (expiry < unixSeconds)
+            {
+                await _localStorage.RemoveItemAsync("authToken");
+                return new AuthenticationState(new ClaimsPrincipal());
+            }
+            ...
+        }
+
+        public void MarkUserAsAuthenticated(string authToken)
+        {
+            var claims = ParseClaimsFromJwt(authToken);
+
+            var authenticatedUser = new ClaimsPrincipal(
+                new ClaimsIdentity(
+                    claims,
+                    "apiauth"));
+            var authState = Task.FromResult(new AuthenticationState(authenticatedUser));
+            NotifyAuthenticationStateChanged(authState);
+        }
+        ...
+    }
+}
+```
+
+        - "~/Services/AuthenticationService.cs" :
+```
+...
+namespace Client.Services
+{
+    public class AuthenticationService : IAuthenticationService
+    {
+        ...
+        public async Task<AuthenticationResponseDto> Login(UserForAuthenticationDto loginModel)
+        {
+            ...
+            ((ApiAuthenticationStateProvider)_stateProvider).MarkUserAsAuthenticated(loginResult.Token!);
+            ...
+        }
+        ...
+    }
+}
+```
