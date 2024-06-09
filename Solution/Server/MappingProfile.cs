@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using ClassLibrary.DataTransferObjects;
+using Shared.DataTransferObjects;
 using Server.Models;
 
 namespace Server
@@ -14,6 +14,11 @@ namespace Server
                 .ForMember(u => u.NombreCompleto, opt => opt.MapFrom(x => x.FullName))
                 // Mapea el valor de "UserForRegistrationDto.Email" a "Usuario.Username"
                 .ForMember(u => u.UserName, opt => opt.MapFrom(x => x.Email));
+
+            CreateMap<UserForUpdateDto, Usuario>()
+                .ForMember(u => u.NombreCompleto, opt => opt.MapFrom(x => x.FullName));
+            CreateMap<Usuario, UserForUpdateDto>()
+                .ForMember(x => x.FullName, opt => opt.MapFrom(u => u.NombreCompleto));
         }
     }
 }

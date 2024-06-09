@@ -13,9 +13,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Hugo\\Downloads\\Solution\\ClassLibrary\\ClassLibrary.csproj",
-      "projectName": "ClassLibrary",
-      "projectPath": "C:\\Users\\Hugo\\Downloads\\Solution\\ClassLibrary\\ClassLibrary.csproj",
+      "projectUniqueName": "C:\\Users\\Hugo\\Downloads\\Solution\\ClassLibrary\\Class.csproj",
+      "projectName": "Class",
+      "projectPath": "C:\\Users\\Hugo\\Downloads\\Solution\\ClassLibrary\\Class.csproj",
       "packagesPath": "C:\\Users\\Hugo\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Hugo\\Downloads\\Solution\\ClassLibrary\\obj\\",
       "projectStyle": "PackageReference",

@@ -1,4 +1,4 @@
-﻿using ClassLibrary.DataTransferObjects;
+﻿using Shared.DataTransferObjects;
 
 namespace Client.Services
 {

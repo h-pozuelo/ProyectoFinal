@@ -1,5 +1,5 @@
 ﻿using Blazored.LocalStorage;
-using ClassLibrary.DataTransferObjects;
+using Shared.DataTransferObjects;
 using Client.Helpers;
 using Microsoft.AspNetCore.Components.Authorization;
 using System.Net.Http.Headers;

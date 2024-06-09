@@ -1,8 +1,6 @@
 C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\blazor.boot.json
 C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\blazor.webassembly.js
 C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\Blazored.LocalStorage.wasm
-C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\ClassLibrary.pdb
-C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\ClassLibrary.wasm
 C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\Client.pdb
 C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\Client.wasm
 C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\dotnet.js
@@ -44,6 +42,8 @@ C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\Micr
 C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\Microsoft.Win32.Registry.wasm
 C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\mscorlib.wasm
 C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\netstandard.wasm
+C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\Shared.pdb
+C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\Shared.wasm
 C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\System.AppContext.wasm
 C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\System.Buffers.wasm
 C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\System.Collections.Concurrent.wasm
@@ -270,7 +270,6 @@ C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\dotn
 C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\System.Configuration.wasm.gz
 C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\System.ComponentModel.Primitives.wasm.gz
 C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\System.Reflection.Metadata.wasm.gz
-C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\ClassLibrary.pdb.gz
 C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\System.Windows.wasm.gz
 C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\System.Threading.Channels.wasm.gz
 C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\System.Diagnostics.Tools.wasm.gz
@@ -283,7 +282,6 @@ C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\Syst
 C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\System.Reflection.TypeExtensions.wasm.gz
 C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\System.Text.Json.wasm.gz
 C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\System.Threading.ThreadPool.wasm.gz
-C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\ClassLibrary.wasm.gz
 C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\System.Numerics.wasm.gz
 C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\Microsoft.AspNetCore.Components.Web.wasm.gz
 C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\Microsoft.CSharp.wasm.gz
@@ -332,6 +330,7 @@ C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\Syst
 C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\System.Security.Cryptography.X509Certificates.wasm.gz
 C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\System.ServiceProcess.wasm.gz
 C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\System.Security.Cryptography.OpenSsl.wasm.gz
+C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\Shared.wasm.gz
 C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\System.IO.wasm.gz
 C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\blazor.webassembly.js.gz
 C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\System.Text.Encodings.Web.wasm.gz
@@ -404,6 +403,7 @@ C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\Micr
 C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\System.Net.WebHeaderCollection.wasm.gz
 C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\System.Runtime.CompilerServices.Unsafe.wasm.gz
 C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\System.Runtime.Handles.wasm.gz
+C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\Shared.pdb.gz
 C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\System.Globalization.Calendars.wasm.gz
 C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\netstandard.wasm.gz
 C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\wwwroot\_framework\Microsoft.AspNetCore.Components.Forms.wasm.gz
@@ -619,8 +619,8 @@ C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\dotnet.runtime.js.map
 C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\icudt_CJK.dat
 C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\icudt_EFIGS.dat
 C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\icudt_no_CJK.dat
-C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\ClassLibrary.dll
-C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\ClassLibrary.pdb
+C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\Shared.dll
+C:\Users\Hugo\Downloads\Solution\Client\bin\Debug\net8.0\Shared.pdb
 C:\Users\Hugo\Downloads\Solution\Client\obj\Debug\net8.0\Client.csproj.AssemblyReference.cache
 C:\Users\Hugo\Downloads\Solution\Client\obj\Debug\net8.0\Client.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Hugo\Downloads\Solution\Client\obj\Debug\net8.0\Client.AssemblyInfoInputs.cache
@@ -820,7 +820,7 @@ C:\Users\Hugo\Downloads\Solution\Client\obj\Debug\net8.0\webcil\WindowsBase.wasm
 C:\Users\Hugo\Downloads\Solution\Client\obj\Debug\net8.0\webcil\mscorlib.wasm
 C:\Users\Hugo\Downloads\Solution\Client\obj\Debug\net8.0\webcil\netstandard.wasm
 C:\Users\Hugo\Downloads\Solution\Client\obj\Debug\net8.0\webcil\System.Private.CoreLib.wasm
-C:\Users\Hugo\Downloads\Solution\Client\obj\Debug\net8.0\webcil\ClassLibrary.wasm
+C:\Users\Hugo\Downloads\Solution\Client\obj\Debug\net8.0\webcil\Shared.wasm
 C:\Users\Hugo\Downloads\Solution\Client\obj\Debug\net8.0\webcil\Client.wasm
 C:\Users\Hugo\Downloads\Solution\Client\obj\Debug\net8.0\blazor.build.boot-extension.json
 C:\Users\Hugo\Downloads\Solution\Client\obj\Debug\net8.0\blazor.boot.json
@@ -1038,8 +1038,8 @@ C:\Users\Hugo\Downloads\Solution\Client\obj\Debug\net8.0\compressed\4qhj50hzfz.g
 C:\Users\Hugo\Downloads\Solution\Client\obj\Debug\net8.0\compressed\v0uyh49nxn.gz
 C:\Users\Hugo\Downloads\Solution\Client\obj\Debug\net8.0\compressed\vxi8tszb0g.gz
 C:\Users\Hugo\Downloads\Solution\Client\obj\Debug\net8.0\compressed\0dh0b4968l.gz
-C:\Users\Hugo\Downloads\Solution\Client\obj\Debug\net8.0\compressed\bqo5heqszj.gz
-C:\Users\Hugo\Downloads\Solution\Client\obj\Debug\net8.0\compressed\acqahu2knv.gz
+C:\Users\Hugo\Downloads\Solution\Client\obj\Debug\net8.0\compressed\ku6ipcuzi7.gz
+C:\Users\Hugo\Downloads\Solution\Client\obj\Debug\net8.0\compressed\yfy5z92ky2.gz
 C:\Users\Hugo\Downloads\Solution\Client\obj\Debug\net8.0\compressed\5ntr115nln.gz
 C:\Users\Hugo\Downloads\Solution\Client\obj\Debug\net8.0\compressed\vbyw40my4q.gz
 C:\Users\Hugo\Downloads\Solution\Client\obj\Debug\net8.0\compressed\fveyapdap7.gz

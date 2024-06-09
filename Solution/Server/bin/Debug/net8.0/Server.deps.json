@@ -9,13 +9,13 @@
       "Server/1.0.0": {
         "dependencies": {
           "AutoMapper": "13.0.1",
-          "ClassLibrary": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.6",
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "8.0.6",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.6",
           "Microsoft.AspNetCore.Identity.UI": "8.0.6",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.6",
           "Microsoft.EntityFrameworkCore.Tools": "8.0.6",
+          "Shared": "1.0.0",
           "Swashbuckle.AspNetCore": "6.4.0"
         },
         "runtime": {
@@ -1013,9 +1013,9 @@
           }
         }
       },
-      "ClassLibrary/1.0.0": {
+      "Shared/1.0.0": {
         "runtime": {
-          "ClassLibrary.dll": {}
+          "Shared.dll": {}
         }
       }
     }
@@ -1642,7 +1642,7 @@
       "path": "system.windows.extensions/6.0.0",
       "hashPath": "system.windows.extensions.6.0.0.nupkg.sha512"
     },
-    "ClassLibrary/1.0.0": {
+    "Shared/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

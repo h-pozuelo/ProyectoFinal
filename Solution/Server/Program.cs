@@ -6,6 +6,7 @@ using Server;
 using Server.Data;
 using Server.JwtFeatures;
 using Server.Models;
+using Server.Services;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -66,6 +67,8 @@ builder.Services.AddCors(options =>
             builder.WithOrigins("*").AllowAnyHeader().AllowAnyMethod();
         });
 });
+
+builder.Services.AddScoped<IUsuariosService, UsuariosService>();
 
 var app = builder.Build();
 

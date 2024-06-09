@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using ClassLibrary.DataTransferObjects;
+using Shared.DataTransferObjects;
 using Server.JwtFeatures;
 using Server.Models;
 using System.IdentityModel.Tokens.Jwt;

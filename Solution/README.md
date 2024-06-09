@@ -1099,3 +1099,332 @@ namespace Client.Services
     }
 }
 ```
+
+    - "Shared" :
+
+        - Dentro de "~/DataTransferObjects/" :
+
+            - "UserForUpdateDto.cs" :
+```
+using System.ComponentModel.DataAnnotations;
+using System.Net;
+
+namespace Shared.DataTransferObjects
+{
+    public class UserForUpdateDto
+    {
+        [Required(ErrorMessage = "El nombre es requerido."),
+            DataType(DataType.Text), Display(Name = "Nombre")]
+        public string? FullName { get; set; }
+
+        [Required(ErrorMessage = "El correo es requerido."),
+            EmailAddress, Display(Name = "Correo")]
+        public string? Email { get; set; }
+
+        [Required(ErrorMessage = "El usuario es requerido."),
+            DataType(DataType.Text), Display(Name = "Usuario")]
+        public string? UserName { get; set; }
+
+        [Required(ErrorMessage = "La contraseña es requerida."),
+            DataType(DataType.Password), Display(Name = "Contraseña"),
+            StringLength(100, ErrorMessage = "La {0} debe tener una longitud de entre {2} y {1} caracteres.", MinimumLength = 6)]
+        public string? Password { get; set; }
+    }
+
+    public class PasswordForUpdateDto
+    {
+        [Required(ErrorMessage = "La contraseña actual es requerida."),
+            DataType(DataType.Password), Display(Name = "Contraseña actual"),
+            StringLength(100, ErrorMessage = "La {0} debe tener una longitud de entre {2} y {1} caracteres.", MinimumLength = 6)]
+        public string? CurrentPassword { get; set; }
+
+        [Required(ErrorMessage = "La nueva contraseña es requerida."),
+            DataType(DataType.Password), Display(Name = "Nueva contraseña"),
+            StringLength(100, ErrorMessage = "La {0} debe tener una longitud de entre {2} y {1} caracteres.", MinimumLength = 6)]
+        public string? NewPassword { get; set; }
+
+        [DataType(DataType.Password), Display(Name = "Confirmar nueva contraseña"),
+            Compare(nameof(NewPassword), ErrorMessage = "La nueva contraseña no coincide.")]
+        public string? ConfirmNewPassword { get; set; }
+    }
+
+    public class ResponseDto<T>
+    {
+        public bool IsSuccessful { get; set; }
+        public T? Element { get; set; }
+        public string? Error { get; set; }
+        public HttpStatusCode StatusCode { get; set; }
+    }
+}
+```
+
+    - "Server" :
+
+        - "MappingProfile.cs" :
+```
+...
+namespace Server
+{
+    // Hereda de la clase "AutoMapper.Profile"
+    public class MappingProfile : Profile
+    {
+        public MappingProfile()
+        {
+            ...
+            CreateMap<UserForUpdateDto, Usuario>()
+                .ForMember(u => u.NombreCompleto, opt => opt.MapFrom(x => x.FullName));
+            CreateMap<Usuario, UserForUpdateDto>()
+                .ForMember(x => x.FullName, opt => opt.MapFrom(u => u.NombreCompleto));
+        }
+    }
+}
+```
+
+        - Creamos la carpeta "~/Services/" :
+
+            - "IUsuariosService.cs" :
+```
+using Shared.DataTransferObjects;
+
+namespace Server.Services
+{
+    public interface IUsuariosService
+    {
+        public Task<ResponseDto<UserForUpdateDto>> GetUsuario(string idUsuario);
+        public Task<ResponseDto<UserForUpdateDto>> UpdateUsuario(UserForUpdateDto usuario, string idUsuario);
+        public Task<ResponseDto<PasswordForUpdateDto>> UpdatePassword(PasswordForUpdateDto password, string idUsuario);
+    }
+}
+```
+
+            - "UsuariosService.cs" :
+```
+using AutoMapper;
+using Microsoft.AspNetCore.Identity;
+using Server.Models;
+using Shared.DataTransferObjects;
+using System.Net;
+
+namespace Server.Services
+{
+    public class UsuariosService : IUsuariosService
+    {
+        private readonly UserManager<Usuario> _userManager;
+        private readonly IMapper _mapper;
+
+        public UsuariosService(UserManager<Usuario> userManager, IMapper mapper)
+        {
+            _userManager = userManager;
+            _mapper = mapper;
+        }
+
+        public async Task<ResponseDto<UserForUpdateDto>> GetUsuario(string idUsuario)
+        {
+            ResponseDto<UserForUpdateDto> response = new ResponseDto<UserForUpdateDto>();
+
+            try
+            {
+                if (string.IsNullOrEmpty(idUsuario))
+                {
+                    response.Error = "El id de usuario es nulo o está vacío.";
+                    response.StatusCode = HttpStatusCode.BadRequest;
+                }
+                else
+                {
+                    Usuario? user = await _userManager.FindByIdAsync(idUsuario);
+
+                    if (user == null)
+                    {
+                        response.Error = "El usuario indicado no existe.";
+                        response.StatusCode = HttpStatusCode.NotFound;
+                    }
+                    else
+                    {
+                        response.IsSuccessful = true;
+                        response.Element = _mapper.Map<UserForUpdateDto>(user);
+                        response.StatusCode = HttpStatusCode.OK;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Error = ex.Message;
+                response.StatusCode = HttpStatusCode.InternalServerError;
+            }
+
+            return response;
+        }
+
+        public async Task<ResponseDto<UserForUpdateDto>> UpdateUsuario(UserForUpdateDto usuario, string idUsuario)
+        {
+            ResponseDto<UserForUpdateDto> response = new ResponseDto<UserForUpdateDto>();
+
+            try
+            {
+                if (string.IsNullOrEmpty(idUsuario))
+                {
+                    response.Error = "El id de usuario es nulo o está vacío.";
+                    response.StatusCode = HttpStatusCode.BadRequest;
+                }
+                else
+                {
+                    Usuario? user = await _userManager.FindByIdAsync(idUsuario);
+
+                    if (user == null)
+                    {
+                        response.Error = "El usuario indicado no existe.";
+                        response.StatusCode = HttpStatusCode.NotFound;
+                    }
+                    else
+                    {
+                        var isValid = await _userManager.CheckPasswordAsync(user, usuario.Password!);
+
+                        if (!isValid)
+                        {
+                            response.Error = "La contraseña no es correcta.";
+                            response.StatusCode = HttpStatusCode.Unauthorized;
+                        }
+                        else
+                        {
+                            _mapper.Map<UserForUpdateDto, Usuario>(usuario, user);
+
+                            var result = await _userManager.UpdateAsync(user);
+
+                            if (!result.Succeeded)
+                            {
+                                response.Error = result.Errors.First()!.Description;
+                                response.StatusCode = HttpStatusCode.BadRequest;
+                            }
+                            else
+                            {
+                                response.IsSuccessful = true;
+                                response.Element = _mapper.Map<UserForUpdateDto>(user);
+                                response.StatusCode = HttpStatusCode.OK;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Error = ex.Message;
+                response.StatusCode = HttpStatusCode.InternalServerError;
+            }
+
+            return response;
+        }
+
+        public async Task<ResponseDto<PasswordForUpdateDto>> UpdatePassword(PasswordForUpdateDto password, string idUsuario)
+        {
+            ResponseDto<PasswordForUpdateDto> response = new ResponseDto<PasswordForUpdateDto>();
+
+            try
+            {
+                if (string.IsNullOrEmpty(idUsuario))
+                {
+                    response.Error = "El id de usuario es nulo o está vacío.";
+                    response.StatusCode = HttpStatusCode.BadRequest;
+                }
+                else
+                {
+                    Usuario? user = await _userManager.FindByIdAsync(idUsuario);
+
+                    if (user == null)
+                    {
+                        response.Error = "El usuario indicado no existe.";
+                        response.StatusCode = HttpStatusCode.NotFound;
+                    }
+                    else
+                    {
+                        var isValid = await _userManager.CheckPasswordAsync(user, password.CurrentPassword!);
+
+                        if (!isValid)
+                        {
+                            response.Error = "La contraseña no es correcta.";
+                            response.StatusCode = HttpStatusCode.Unauthorized;
+                        }
+                        else
+                        {
+                            await _userManager.ChangePasswordAsync(user, password.CurrentPassword!, password.NewPassword!);
+
+                            response.IsSuccessful = true;
+                            response.StatusCode = HttpStatusCode.OK;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Error = ex.Message;
+                response.StatusCode = HttpStatusCode.InternalServerError;
+            }
+
+            return response;
+        }
+    }
+}
+```
+
+        - "Program.cs" :
+```
+...
+using Server.Services;
+...
+builder.Services.AddScoped<IUsuariosService, UsuariosService>();
+...
+```
+
+        - Dentro de "~/Controllers/" :
+            
+            - "UsuariosController.cs" :
+```
+using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Server.Services;
+using Shared.DataTransferObjects;
+
+namespace Server.Controllers
+{
+    [EnableCors(policyName: "MyPolicy")]
+    [Route("api/[controller]")]
+    [ApiController]
+    public class UsuariosController : ControllerBase
+    {
+        private readonly IUsuariosService _usuariosService;
+
+        public UsuariosController(IUsuariosService usuariosService)
+        {
+            _usuariosService = usuariosService;
+        }
+
+        [HttpGet("GetUsuario/{id}")]
+        public async Task<IActionResult> GetUsuario(string id)
+        {
+            var result = await _usuariosService.GetUsuario(id);
+
+            return StatusCode(((int)result.StatusCode), result);
+        }
+
+        [HttpPut("UpdateUsuario/{id}")]
+        public async Task<IActionResult> UpdateUsuario([FromBody] UserForUpdateDto model, string id)
+        {
+            if (model == null || !ModelState.IsValid) return BadRequest();
+
+            var result = await _usuariosService.UpdateUsuario(model, id);
+
+            return StatusCode(((int)result.StatusCode), result);
+        }
+
+        [HttpPut("UpdatePassword/{id}")]
+        public async Task<IActionResult> UpdatePassword([FromBody] PasswordForUpdateDto model, string id)
+        {
+            if (model == null || !ModelState.IsValid) return BadRequest();
+
+            var result = await _usuariosService.UpdatePassword(model, id);
+
+            return StatusCode(((int)result.StatusCode), result);
+        }
+    }
+}
+```
