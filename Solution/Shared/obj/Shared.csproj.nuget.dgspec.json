@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Hugo\\Downloads\\Solution\\Shared\\Shared.csproj": {}
+    "C:\\Proyectos\\Github\\ProyectoFinal\\Solution\\Shared\\Shared.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Hugo\\Downloads\\Solution\\Shared\\Shared.csproj": {
+    "C:\\Proyectos\\Github\\ProyectoFinal\\Solution\\Shared\\Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Hugo\\Downloads\\Solution\\Shared\\Shared.csproj",
+        "projectUniqueName": "C:\\Proyectos\\Github\\ProyectoFinal\\Solution\\Shared\\Shared.csproj",
         "projectName": "Shared",
-        "projectPath": "C:\\Users\\Hugo\\Downloads\\Solution\\Shared\\Shared.csproj",
-        "packagesPath": "C:\\Users\\Hugo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Hugo\\Downloads\\Solution\\Shared\\obj\\",
+        "projectPath": "C:\\Proyectos\\Github\\ProyectoFinal\\Solution\\Shared\\Shared.csproj",
+        "packagesPath": "C:\\Users\\Alumnos MCSD Tarde\\.nuget\\packages\\",
+        "outputPath": "C:\\Proyectos\\Github\\ProyectoFinal\\Solution\\Shared\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Hugo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Alumnos MCSD Tarde\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -60,7 +61,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
