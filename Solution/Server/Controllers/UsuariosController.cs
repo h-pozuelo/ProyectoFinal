@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Server.Services;
+using Shared.Services;
 using Shared.DataTransferObjects;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Server.Controllers
 {
+    [Authorize]
     [EnableCors(policyName: "MyPolicy")]
     [Route("api/[controller]")]
     [ApiController]
@@ -18,16 +20,16 @@ namespace Server.Controllers
             _usuariosService = usuariosService;
         }
 
-        [HttpGet("GetUsuario/{id}")]
-        public async Task<IActionResult> GetUsuario(string id)
+        [HttpGet("GetUsuario")]
+        public async Task<IActionResult> GetUsuario([FromHeader] string id)
         {
             var result = await _usuariosService.GetUsuario(id);
 
             return StatusCode(((int)result.StatusCode), result);
         }
 
-        [HttpPut("UpdateUsuario/{id}")]
-        public async Task<IActionResult> UpdateUsuario([FromBody] UserForUpdateDto model, string id)
+        [HttpPut("UpdateUsuario")]
+        public async Task<IActionResult> UpdateUsuario([FromBody] UserForUpdateDto model, [FromHeader] string id)
         {
             if (model == null || !ModelState.IsValid) return BadRequest();
 
@@ -36,8 +38,8 @@ namespace Server.Controllers
             return StatusCode(((int)result.StatusCode), result);
         }
 
-        [HttpPut("UpdatePassword/{id}")]
-        public async Task<IActionResult> UpdatePassword([FromBody] PasswordForUpdateDto model, string id)
+        [HttpPut("UpdatePassword")]
+        public async Task<IActionResult> UpdatePassword([FromBody] PasswordForUpdateDto model, [FromHeader] string id)
         {
             if (model == null || !ModelState.IsValid) return BadRequest();
 

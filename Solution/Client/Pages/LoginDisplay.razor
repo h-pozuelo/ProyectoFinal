@@ -2,11 +2,10 @@
 
 <AuthorizeView>
     <Authorized>
-        Bienvenido, @context.User.Identity!.Name
-        <a href="logout">Cerrar Sesión</a>
+        <a href="/perfil">@context.User.Identity!.Name</a>
+        <a href="logout">Cerrar sesión</a>
     </Authorized>
     <NotAuthorized>
-        <a href="register">Registrarse</a>
-        <a href="login">Iniciar Sesión</a>
+        <a href="login">Iniciar sesión</a>
     </NotAuthorized>
 </AuthorizeView>

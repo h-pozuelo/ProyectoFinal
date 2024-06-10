@@ -515,6 +515,7 @@ builder.Services.AddCors(options =>
         });
 });
 ...
+// Debemos incluir el uso de CORS entre "app.UseRouting();" ... "app.UseCors();" ... "app.UseAuthentication();"
 app.UseCors(policyName: "MyPolicy");
 ...
 ```
@@ -1381,11 +1382,13 @@ builder.Services.AddScoped<IUsuariosService, UsuariosService>();
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Server.Services;
+using Shared.Services;
 using Shared.DataTransferObjects;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Server.Controllers
 {
+    [Authorize]
     [EnableCors(policyName: "MyPolicy")]
     [Route("api/[controller]")]
     [ApiController]
@@ -1398,16 +1401,16 @@ namespace Server.Controllers
             _usuariosService = usuariosService;
         }
 
-        [HttpGet("GetUsuario/{id}")]
-        public async Task<IActionResult> GetUsuario(string id)
+        [HttpGet("GetUsuario")]
+        public async Task<IActionResult> GetUsuario([FromHeader] string id)
         {
             var result = await _usuariosService.GetUsuario(id);
 
             return StatusCode(((int)result.StatusCode), result);
         }
 
-        [HttpPut("UpdateUsuario/{id}")]
-        public async Task<IActionResult> UpdateUsuario([FromBody] UserForUpdateDto model, string id)
+        [HttpPut("UpdateUsuario")]
+        public async Task<IActionResult> UpdateUsuario([FromBody] UserForUpdateDto model, [FromHeader] string id)
         {
             if (model == null || !ModelState.IsValid) return BadRequest();
 
@@ -1416,8 +1419,8 @@ namespace Server.Controllers
             return StatusCode(((int)result.StatusCode), result);
         }
 
-        [HttpPut("UpdatePassword/{id}")]
-        public async Task<IActionResult> UpdatePassword([FromBody] PasswordForUpdateDto model, string id)
+        [HttpPut("UpdatePassword")]
+        public async Task<IActionResult> UpdatePassword([FromBody] PasswordForUpdateDto model, [FromHeader] string id)
         {
             if (model == null || !ModelState.IsValid) return BadRequest();
 
@@ -1425,6 +1428,244 @@ namespace Server.Controllers
 
             return StatusCode(((int)result.StatusCode), result);
         }
+    }
+}
+```
+
+    - "Client" :
+
+        - Creamos la carpeta "~/Services/" :
+
+            - "UsuariosService.cs" :
+```
+using Blazored.LocalStorage;
+using Shared.DataTransferObjects;
+using Shared.Services;
+using System.Text;
+using System.Text.Json;
+
+namespace Client.Services
+{
+    public class UsuariosService : IUsuariosService
+    {
+        private readonly HttpClient _httpClient;
+        private readonly ILocalStorageService _localStorage;
+
+        private readonly string apiUri = "https://localhost:7123/api/";
+
+        public UsuariosService(HttpClient httpClient, ILocalStorageService localStorage)
+        {
+            _httpClient = httpClient;
+            _localStorage = localStorage;
+        }
+
+        public async Task<ResponseDto<UserForUpdateDto>> GetUsuario(string idUsuario)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, $"{apiUri}Usuarios/GetUsuario");
+
+            request.Headers.Add("id", idUsuario);
+
+            var response = await _httpClient.SendAsync(request);
+
+            var result = JsonSerializer.Deserialize<ResponseDto<UserForUpdateDto>>(
+                await response.Content.ReadAsStringAsync(),
+                new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+
+            return result!;
+        }
+
+        public async Task<ResponseDto<UserForUpdateDto>> UpdateUsuario(UserForUpdateDto usuario, string idUsuario)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Put, $"{apiUri}Usuarios/UpdateUsuario");
+
+            request.Headers.Add("id", idUsuario);
+
+            var usuarioAsJson = JsonSerializer.Serialize(usuario);
+
+            request.Content = new StringContent(usuarioAsJson, Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.SendAsync(request);
+
+            var result = JsonSerializer.Deserialize<ResponseDto<UserForUpdateDto>>(
+                await response.Content.ReadAsStringAsync(),
+                new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+
+            return result!;
+        }
+
+        public async Task<ResponseDto<PasswordForUpdateDto>> UpdatePassword(PasswordForUpdateDto password, string idUsuario)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Put, $"{apiUri}Usuarios/UpdatePassword");
+
+            request.Headers.Add("id", idUsuario);
+
+            var passwordAsJson = JsonSerializer.Serialize(password);
+
+            request.Content = new StringContent(passwordAsJson, Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.SendAsync(request);
+
+            var result = JsonSerializer.Deserialize<ResponseDto<PasswordForUpdateDto>>(
+                await response.Content.ReadAsStringAsync(),
+                new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+
+            return result!;
+        }
+    }
+}
+```
+
+        - "Program.cs" :
+```
+...
+using Shared.Services;
+...
+builder.Services.AddScoped<IUsuariosService, UsuariosService>();
+...
+```
+
+        - Dentro de "~/Pages/" :
+
+            - "Perfil.razor" :
+```
+@page "/perfil"
+@using Shared.DataTransferObjects
+@using Shared.Services
+@inject IUsuariosService UsuariosService
+@inject NavigationManager NavigationManager
+@using Microsoft.AspNetCore.Components.Authorization
+@inject AuthenticationStateProvider StateProvider
+
+<h3>Perfil</h3>
+
+@if (showErrors)
+{
+    <div class="alert alert-danger" role="alert">
+        <p>@error</p>
+    </div>
+}
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Rellena el formulario.</h5>
+        <EditForm Model="userModel" OnValidSubmit="UpdateUsuario">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="form-group">
+                <label for="nombreCompleto">Nombre Completo</label>
+                <InputText id="nombreCompleto" class="form-control" @bind-Value="userModel.FullName" />
+                <ValidationMessage For="@(() => userModel.FullName)" />
+            </div>
+            <div class="form-group">
+                <label for="email">Correo</label>
+                <InputText id="email" class="form-control" @bind-Value="userModel.Email" />
+                <ValidationMessage For="@(() => userModel.Email)" />
+            </div>
+            <div class="form-group">
+                <label for="username">Usuario</label>
+                <InputText id="userName" class="form-control" @bind-Value="userModel.UserName" />
+                <ValidationMessage For="@(() => userModel.UserName)" />
+            </div>
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <InputText id="password" type="password" class="form-control" @bind-Value="userModel.Password" />
+                <ValidationMessage For="@(() => userModel.Password)" />
+            </div>
+            <hr />
+            <div class="text-end">
+                <button type="submit" class="btn btn-outline-primary">Enviar</button>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Rellena el formulario.</h5>
+        <EditForm Model="passModel" OnValidSubmit="UpdatePassword">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="form-group">
+                <label for="currentPassword">Contraseña Actual</label>
+                <InputText id="currentPassword" type="password" class="form-control" @bind-Value="passModel.CurrentPassword" />
+                <ValidationMessage For="@(() => passModel.CurrentPassword)" />
+            </div>
+            <div class="form-group">
+                <label for="newPassword">Nueva Contraseña</label>
+                <InputText id="newPassword" type="password" class="form-control" @bind-Value="passModel.NewPassword" />
+                <ValidationMessage For="@(() => passModel.NewPassword)" />
+            </div>
+            <div class="form-group">
+                <label for="confirmNewPassword">Confirmar Nueva Contraseña</label>
+                <InputText id="confirmNewPassword" type="password" class="form-control" @bind-Value="passModel.ConfirmNewPassword" />
+                <ValidationMessage For="@(() => passModel.ConfirmNewPassword)" />
+            </div>
+            <hr />
+            <div class="text-end">
+                <button type="submit" class="btn btn-outline-primary">Enviar</button>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    private UserForUpdateDto userModel = new UserForUpdateDto();
+    private PasswordForUpdateDto passModel = new PasswordForUpdateDto();
+    private bool showErrors;
+    private string error = "";
+
+    private string idUsuario = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        idUsuario = (await StateProvider.GetAuthenticationStateAsync()).User.FindFirst("Id")!.Value;
+
+        var result = await UsuariosService.GetUsuario(idUsuario);
+
+        userModel = result.Element!;
+    }
+
+    private async Task UpdateUsuario()
+    {
+        showErrors = false;
+
+        var result = await UsuariosService.UpdateUsuario(userModel, idUsuario);
+
+        if (result.IsSuccessful)
+        {
+            userModel = result.Element!;
+            return;
+        }
+
+        error = result.Error!;
+        showErrors = true;
+    }
+
+    private async Task UpdatePassword()
+    {
+        showErrors = false;
+
+        var result = await UsuariosService.UpdatePassword(passModel, idUsuario);
+
+        if (result.IsSuccessful)
+        {
+            passModel = result.Element!;
+            return;
+        }
+
+        error = result.Error!;
+        showErrors = true;
     }
 }
 ```

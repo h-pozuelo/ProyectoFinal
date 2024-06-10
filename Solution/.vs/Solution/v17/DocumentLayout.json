@@ -1,12 +1,88 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Hugo\\Downloads\\Solution\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BFE1F958-F46C-461A-A66D-02C1A19C479B}|Client\\Client.csproj|c:\\users\\hugo\\downloads\\solution\\client\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BFE1F958-F46C-461A-A66D-02C1A19C479B}|Client\\Client.csproj|solutionrelative:client\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFE1F958-F46C-461A-A66D-02C1A19C479B}|Client\\Client.csproj|c:\\users\\hugo\\downloads\\solution\\client\\pages\\register.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BFE1F958-F46C-461A-A66D-02C1A19C479B}|Client\\Client.csproj|solutionrelative:client\\pages\\register.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFE1F958-F46C-461A-A66D-02C1A19C479B}|Client\\Client.csproj|c:\\users\\hugo\\downloads\\solution\\client\\pages\\logindisplay.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BFE1F958-F46C-461A-A66D-02C1A19C479B}|Client\\Client.csproj|solutionrelative:client\\pages\\logindisplay.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFE1F958-F46C-461A-A66D-02C1A19C479B}|Client\\Client.csproj|c:\\users\\hugo\\downloads\\solution\\client\\pages\\perfil.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BFE1F958-F46C-461A-A66D-02C1A19C479B}|Client\\Client.csproj|solutionrelative:client\\pages\\perfil.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Perfil.razor",
+              "DocumentMoniker": "C:\\Users\\Hugo\\Downloads\\Solution\\Client\\Pages\\Perfil.razor",
+              "RelativeDocumentMoniker": "Client\\Pages\\Perfil.razor",
+              "ToolTip": "C:\\Users\\Hugo\\Downloads\\Solution\\Client\\Pages\\Perfil.razor",
+              "RelativeToolTip": "Client\\Pages\\Perfil.razor",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAJIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-10T09:46:46.546Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "LoginDisplay.razor",
+              "DocumentMoniker": "C:\\Users\\Hugo\\Downloads\\Solution\\Client\\Pages\\LoginDisplay.razor",
+              "RelativeDocumentMoniker": "Client\\Pages\\LoginDisplay.razor",
+              "ToolTip": "C:\\Users\\Hugo\\Downloads\\Solution\\Client\\Pages\\LoginDisplay.razor",
+              "RelativeToolTip": "Client\\Pages\\LoginDisplay.razor",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-10T09:45:21.082Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Register.razor",
+              "DocumentMoniker": "C:\\Users\\Hugo\\Downloads\\Solution\\Client\\Pages\\Register.razor",
+              "RelativeDocumentMoniker": "Client\\Pages\\Register.razor",
+              "ToolTip": "C:\\Users\\Hugo\\Downloads\\Solution\\Client\\Pages\\Register.razor",
+              "RelativeToolTip": "Client\\Pages\\Register.razor",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAAAC0AAABAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-10T09:33:11.527Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Login.razor",
+              "DocumentMoniker": "C:\\Users\\Hugo\\Downloads\\Solution\\Client\\Pages\\Login.razor",
+              "RelativeDocumentMoniker": "Client\\Pages\\Login.razor",
+              "ToolTip": "C:\\Users\\Hugo\\Downloads\\Solution\\Client\\Pages\\Login.razor",
+              "RelativeToolTip": "Client\\Pages\\Login.razor",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACAAAABaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-10T09:17:14.692Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

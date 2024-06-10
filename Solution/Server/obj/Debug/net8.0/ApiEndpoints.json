@@ -34,7 +34,7 @@
   {
     "ContainingType": "Server.Controllers.UsuariosController",
     "Method": "GetUsuario",
-    "RelativePath": "api/Usuarios/GetUsuario/{id}",
+    "RelativePath": "api/Usuarios/GetUsuario",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -42,7 +42,7 @@
       {
         "Name": "id",
         "Type": "System.String",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -50,7 +50,7 @@
   {
     "ContainingType": "Server.Controllers.UsuariosController",
     "Method": "UpdatePassword",
-    "RelativePath": "api/Usuarios/UpdatePassword/{id}",
+    "RelativePath": "api/Usuarios/UpdatePassword",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -63,7 +63,7 @@
       {
         "Name": "id",
         "Type": "System.String",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -71,7 +71,7 @@
   {
     "ContainingType": "Server.Controllers.UsuariosController",
     "Method": "UpdateUsuario",
-    "RelativePath": "api/Usuarios/UpdateUsuario/{id}",
+    "RelativePath": "api/Usuarios/UpdateUsuario",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -84,7 +84,7 @@
       {
         "Name": "id",
         "Type": "System.String",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

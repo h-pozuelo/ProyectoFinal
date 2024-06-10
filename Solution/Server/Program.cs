@@ -7,6 +7,7 @@ using Server.Data;
 using Server.JwtFeatures;
 using Server.Models;
 using Server.Services;
+using Shared.Services;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -87,13 +88,14 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+// Debemos incluir el uso de CORS entre "app.UseRouting();" ... "app.UseCors();" ... "app.UseAuthentication();"
+app.UseCors(policyName: "MyPolicy");
+
 // Habilita la autenticación en el servidor
 // Obligatorio ponerlo antes de "app.UseAuthorization();"
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-
-app.UseCors(policyName: "MyPolicy");
 
 app.Run();

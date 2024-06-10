@@ -1,6 +1,6 @@
 ﻿using Shared.DataTransferObjects;
 
-namespace Server.Services
+namespace Shared.Services
 {
     public interface IUsuariosService
     {

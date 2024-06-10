@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Server.Models;
 using Shared.DataTransferObjects;
+using Shared.Services;
 using System.Net;
 
 namespace Server.Services
