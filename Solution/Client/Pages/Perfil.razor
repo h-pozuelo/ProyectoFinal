@@ -5,6 +5,8 @@
 @inject NavigationManager NavigationManager
 @using Microsoft.AspNetCore.Components.Authorization
 @inject AuthenticationStateProvider StateProvider
+@using Client.Services
+@inject IAuthenticationService AuthenticationService
 
 @if (showErrors)
 {
@@ -110,12 +112,26 @@
 
         if (result.IsSuccessful)
         {
-            userModel = result.Element!;
+            await HandleLogin(new UserForAuthenticationDto { Email = userModel.Email, Password = userModel.Password });
+            await ClearUsuarioForm();
             return;
         }
 
         error = result.Error!;
         showErrors = true;
+    }
+
+    private async Task HandleLogin(UserForAuthenticationDto loginModel)
+    {
+        showErrors = false;
+
+        var result = await AuthenticationService.Login(loginModel);
+
+        if (!result.IsAuthenticationSuccessful)
+        {
+            error = result.ErrorMessage!;
+            showErrors = true;
+        }
     }
 
     private async Task UpdatePassword()
@@ -126,7 +142,7 @@
 
         if (result.IsSuccessful)
         {
-            passModel = result.Element!;
+            ClearPasswordForm();
             return;
         }
 

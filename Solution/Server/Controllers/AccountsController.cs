@@ -63,7 +63,7 @@ namespace Server.Controllers
             Usuario? user = await _userManager.FindByEmailAsync(model.Email!);
 
             // Si no existe ningún usuario en la base de datos con ese correo...
-            if (user == null) return NotFound();
+            if (user == null) return NotFound(new AuthenticationResponseDto { ErrorMessage = "No existe el usuario indicado." });
 
             var result = await _signInManager.PasswordSignInAsync(user, model.Password!, false, false);
 
