@@ -9,6 +9,7 @@ using Server.Models;
 using Server.Services;
 using Shared.Services;
 using System.Text;
+using Microsoft.Extensions.Azure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -70,6 +71,13 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddScoped<IUsuariosService, UsuariosService>();
+builder.Services.AddAzureClients(clientBuilder =>
+{
+    clientBuilder.AddBlobServiceClient(builder.Configuration["StorageConnectionString:blob"]!, preferMsi: true);
+    clientBuilder.AddQueueServiceClient(builder.Configuration["StorageConnectionString:queue"]!, preferMsi: true);
+});
+
+builder.Services.AddScoped<IImagesService, ImagesService>();
 
 var app = builder.Build();
 

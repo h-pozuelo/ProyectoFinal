@@ -53,6 +53,18 @@
               "target": "Package",
               "version": "[13.0.1, )"
             },
+            "Azure.Storage.Blobs": {
+              "target": "Package",
+              "version": "[12.13.1, )"
+            },
+            "Azure.Storage.Files.Shares": {
+              "target": "Package",
+              "version": "[12.1.0, )"
+            },
+            "Azure.Storage.Queues": {
+              "target": "Package",
+              "version": "[12.11.1, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[8.0.6, )"
@@ -78,6 +90,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[8.0.6, )"
+            },
+            "Microsoft.Extensions.Azure": {
+              "target": "Package",
+              "version": "[1.5.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

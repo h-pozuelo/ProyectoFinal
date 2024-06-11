@@ -1,12 +1,105 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Hugo\\Downloads\\Solution\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3C2EF8FC-F25C-4DDB-B556-B75DF64808C5}|Elementos de la soluci\u00F3n{3C2EF8FC-F25C-4DDB-B556-B75DF64808C5}|C:\\Users\\Hugo\\Downloads\\Solution\\README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{3C2EF8FC-F25C-4DDB-B556-B75DF64808C5}|Elementos de la soluci\u00F3n{3C2EF8FC-F25C-4DDB-B556-B75DF64808C5}|solutionrelative:README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1E8C694-E440-4743-98AD-F8A6150F8624}|Server\\Server.csproj|c:\\users\\hugo\\downloads\\solution\\server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A1E8C694-E440-4743-98AD-F8A6150F8624}|Server\\Server.csproj|solutionrelative:server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1E8C694-E440-4743-98AD-F8A6150F8624}|Server\\Server.csproj|c:\\users\\hugo\\downloads\\solution\\server\\controllers\\imagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A1E8C694-E440-4743-98AD-F8A6150F8624}|Server\\Server.csproj|solutionrelative:server\\controllers\\imagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1E8C694-E440-4743-98AD-F8A6150F8624}|Server\\Server.csproj|c:\\users\\hugo\\downloads\\solution\\server\\services\\imagesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A1E8C694-E440-4743-98AD-F8A6150F8624}|Server\\Server.csproj|solutionrelative:server\\services\\imagesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1E8C694-E440-4743-98AD-F8A6150F8624}|Server\\Server.csproj|c:\\users\\hugo\\downloads\\solution\\server\\services\\iimagesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A1E8C694-E440-4743-98AD-F8A6150F8624}|Server\\Server.csproj|solutionrelative:server\\services\\iimagesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ImagesController.cs",
+              "DocumentMoniker": "C:\\Users\\Hugo\\Downloads\\Solution\\Server\\Controllers\\ImagesController.cs",
+              "RelativeDocumentMoniker": "Server\\Controllers\\ImagesController.cs",
+              "ToolTip": "C:\\Users\\Hugo\\Downloads\\Solution\\Server\\Controllers\\ImagesController.cs",
+              "RelativeToolTip": "Server\\Controllers\\ImagesController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-11T09:52:33.512Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Hugo\\Downloads\\Solution\\Server\\Program.cs",
+              "RelativeDocumentMoniker": "Server\\Program.cs",
+              "ToolTip": "C:\\Users\\Hugo\\Downloads\\Solution\\Server\\Program.cs",
+              "RelativeToolTip": "Server\\Program.cs",
+              "ViewState": "AQIAADsAAAAAAAAAAAAuwG0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-11T09:52:00.215Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ImagesService.cs",
+              "DocumentMoniker": "C:\\Users\\Hugo\\Downloads\\Solution\\Server\\Services\\ImagesService.cs",
+              "RelativeDocumentMoniker": "Server\\Services\\ImagesService.cs",
+              "ToolTip": "C:\\Users\\Hugo\\Downloads\\Solution\\Server\\Services\\ImagesService.cs",
+              "RelativeToolTip": "Server\\Services\\ImagesService.cs",
+              "ViewState": "AQIAADUAAAAAAAAAAAAmwGYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-11T09:36:42.633Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IImagesService.cs",
+              "DocumentMoniker": "C:\\Users\\Hugo\\Downloads\\Solution\\Server\\Services\\IImagesService.cs",
+              "RelativeDocumentMoniker": "Server\\Services\\IImagesService.cs",
+              "ToolTip": "C:\\Users\\Hugo\\Downloads\\Solution\\Server\\Services\\IImagesService.cs",
+              "RelativeToolTip": "Server\\Services\\IImagesService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-11T09:36:37.291Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "README.md",
+              "DocumentMoniker": "C:\\Users\\Hugo\\Downloads\\Solution\\README.md",
+              "RelativeDocumentMoniker": "README.md",
+              "ToolTip": "C:\\Users\\Hugo\\Downloads\\Solution\\README.md",
+              "RelativeToolTip": "README.md",
+              "ViewState": "AQIAABkHAAAAAAAAAAAAACsHAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2024-06-10T19:44:05.315Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

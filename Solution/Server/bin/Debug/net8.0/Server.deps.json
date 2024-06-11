@@ -9,12 +9,16 @@
       "Server/1.0.0": {
         "dependencies": {
           "AutoMapper": "13.0.1",
+          "Azure.Storage.Blobs": "12.13.1",
+          "Azure.Storage.Files.Shares": "12.1.0",
+          "Azure.Storage.Queues": "12.11.1",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.6",
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "8.0.6",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.6",
           "Microsoft.AspNetCore.Identity.UI": "8.0.6",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.6",
           "Microsoft.EntityFrameworkCore.Tools": "8.0.6",
+          "Microsoft.Extensions.Azure": "1.5.0",
           "Shared": "1.0.0",
           "Swashbuckle.AspNetCore": "6.4.0"
         },
@@ -64,6 +68,56 @@
           "lib/netstandard2.0/Azure.Identity.dll": {
             "assemblyVersion": "1.10.3.0",
             "fileVersion": "1.1000.323.51804"
+          }
+        }
+      },
+      "Azure.Storage.Blobs/12.13.1": {
+        "dependencies": {
+          "Azure.Storage.Common": "12.12.0",
+          "System.Text.Json": "8.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.1/Azure.Storage.Blobs.dll": {
+            "assemblyVersion": "12.13.1.0",
+            "fileVersion": "12.1300.122.42210"
+          }
+        }
+      },
+      "Azure.Storage.Common/12.12.0": {
+        "dependencies": {
+          "Azure.Core": "1.35.0",
+          "System.IO.Hashing": "6.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Azure.Storage.Common.dll": {
+            "assemblyVersion": "12.12.0.0",
+            "fileVersion": "12.1200.22.35704"
+          }
+        }
+      },
+      "Azure.Storage.Files.Shares/12.1.0": {
+        "dependencies": {
+          "Azure.Core": "1.35.0",
+          "Azure.Storage.Common": "12.12.0",
+          "System.Text.Json": "8.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Azure.Storage.Files.Shares.dll": {
+            "assemblyVersion": "12.1.0.0",
+            "fileVersion": "12.100.20.11104"
+          }
+        }
+      },
+      "Azure.Storage.Queues/12.11.1": {
+        "dependencies": {
+          "Azure.Storage.Common": "12.12.0",
+          "System.Memory.Data": "1.0.2",
+          "System.Text.Json": "8.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.1/Azure.Storage.Queues.dll": {
+            "assemblyVersion": "12.11.1.0",
+            "fileVersion": "12.1100.122.42210"
           }
         }
       },
@@ -498,6 +552,23 @@
         }
       },
       "Microsoft.Extensions.ApiDescription.Server/6.0.5": {},
+      "Microsoft.Extensions.Azure/1.5.0": {
+        "dependencies": {
+          "Azure.Core": "1.35.0",
+          "Azure.Identity": "1.10.3",
+          "Microsoft.Extensions.Configuration.Abstractions": "8.0.0",
+          "Microsoft.Extensions.Configuration.Binder": "2.1.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "8.0.0",
+          "Microsoft.Extensions.Options": "8.0.2"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.Azure.dll": {
+            "assemblyVersion": "1.5.0.0",
+            "fileVersion": "1.500.22.46202"
+          }
+        }
+      },
       "Microsoft.Extensions.Caching.Abstractions/8.0.0": {
         "dependencies": {
           "Microsoft.Extensions.Primitives": "8.0.0"
@@ -512,9 +583,19 @@
           "Microsoft.Extensions.Primitives": "8.0.0"
         }
       },
+      "Microsoft.Extensions.Configuration/2.1.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "8.0.0"
+        }
+      },
       "Microsoft.Extensions.Configuration.Abstractions/8.0.0": {
         "dependencies": {
           "Microsoft.Extensions.Primitives": "8.0.0"
+        }
+      },
+      "Microsoft.Extensions.Configuration.Binder/2.1.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Configuration": "2.1.0"
         }
       },
       "Microsoft.Extensions.DependencyInjection/8.0.0": {
@@ -906,6 +987,14 @@
           "System.Security.Principal.Windows": "5.0.0"
         }
       },
+      "System.IO.Hashing/6.0.0": {
+        "runtime": {
+          "lib/net6.0/System.IO.Hashing.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          }
+        }
+      },
       "System.IO.Pipelines/6.0.3": {},
       "System.Memory/4.5.4": {},
       "System.Memory.Data/1.0.2": {
@@ -1046,6 +1135,34 @@
       "sha512": "sha512-l1Xm2MWOF2Mzcwuarlw8kWQXLZk3UeB55aQXVyjj23aBfDwOZ3gu5GP2kJ6KlmZeZv2TCzw7x4L3V36iNr3gww==",
       "path": "azure.identity/1.10.3",
       "hashPath": "azure.identity.1.10.3.nupkg.sha512"
+    },
+    "Azure.Storage.Blobs/12.13.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bEJUFBS9wTk/ZJmJBsm/GktZenl2GVkxLHNC7SkeCd0cfKC1MP11EXV7e0NDySsFDEEjjGACb8Fau6lPTmXdsg==",
+      "path": "azure.storage.blobs/12.13.1",
+      "hashPath": "azure.storage.blobs.12.13.1.nupkg.sha512"
+    },
+    "Azure.Storage.Common/12.12.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Ms0XsZ/D9Pcudfbqj+rWeCkhx/ITEq8isY0jkor9JFmDAEHsItFa2XrWkzP3vmJU6EsXQrk4snH63HkW/Jksvg==",
+      "path": "azure.storage.common/12.12.0",
+      "hashPath": "azure.storage.common.12.12.0.nupkg.sha512"
+    },
+    "Azure.Storage.Files.Shares/12.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-qF0nsCNh+SqUvRyx0zG8teJsEImeFlO5uqpcWtursupvhyG+kBJOuSRjUQDoK1Uw4tS2IxkrTV1R5vXP03KGcA==",
+      "path": "azure.storage.files.shares/12.1.0",
+      "hashPath": "azure.storage.files.shares.12.1.0.nupkg.sha512"
+    },
+    "Azure.Storage.Queues/12.11.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bvVjNP136ZukujHczlAqTyoknWcr6JNb/qpWPjTOV2wYtjRDYPuhPRWcAYrHWsr6BDLtgofg4cFg+knqoOBXNg==",
+      "path": "azure.storage.queues/12.11.1",
+      "hashPath": "azure.storage.queues.12.11.1.nupkg.sha512"
     },
     "Humanizer.Core/2.14.1": {
       "type": "package",
@@ -1208,6 +1325,13 @@
       "path": "microsoft.extensions.apidescription.server/6.0.5",
       "hashPath": "microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512"
     },
+    "Microsoft.Extensions.Azure/1.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-UIMQDuMWvoPc7j8e1rlAWgfbi7wkaz/yZd1E6p3a5g27uMteb4Re2Bf1wtwiV/PZmdUd8ds0Dg4JixxwByWelg==",
+      "path": "microsoft.extensions.azure/1.5.0",
+      "hashPath": "microsoft.extensions.azure.1.5.0.nupkg.sha512"
+    },
     "Microsoft.Extensions.Caching.Abstractions/8.0.0": {
       "type": "package",
       "serviceable": true,
@@ -1222,12 +1346,26 @@
       "path": "microsoft.extensions.caching.memory/8.0.0",
       "hashPath": "microsoft.extensions.caching.memory.8.0.0.nupkg.sha512"
     },
+    "Microsoft.Extensions.Configuration/2.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-SS8ce1GYQTkZoOq5bskqQ+m7xiXQjnKRiGfVNZkkX2SX0HpXNRsKnSUaywRRuCje3v2KT9xeacsM3J9/G2exsQ==",
+      "path": "microsoft.extensions.configuration/2.1.0",
+      "hashPath": "microsoft.extensions.configuration.2.1.0.nupkg.sha512"
+    },
     "Microsoft.Extensions.Configuration.Abstractions/8.0.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-3lE/iLSutpgX1CC0NOW70FJoGARRHbyKmG7dc0klnUZ9Dd9hS6N/POPWhKhMLCEuNN5nXEY5agmlFtH562vqhQ==",
       "path": "microsoft.extensions.configuration.abstractions/8.0.0",
       "hashPath": "microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Configuration.Binder/2.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Fls0O54Ielz1DiVYpcmiUpeizN1iKGGI5yAWAoShfmUvMcQ8jAGOK1a+DaflHA5hN9IOKvmSos0yewDYAIY0ZA==",
+      "path": "microsoft.extensions.configuration.binder/2.1.0",
+      "hashPath": "microsoft.extensions.configuration.binder.2.1.0.nupkg.sha512"
     },
     "Microsoft.Extensions.DependencyInjection/8.0.0": {
       "type": "package",
@@ -1515,6 +1653,13 @@
       "sha512": "sha512-SxHB3nuNrpptVk+vZ/F+7OHEpoHUIKKMl02bUmYHQr1r+glbZQxs7pRtsf4ENO29TVm2TH3AEeep2fJcy92oYw==",
       "path": "system.io.filesystem.accesscontrol/5.0.0",
       "hashPath": "system.io.filesystem.accesscontrol.5.0.0.nupkg.sha512"
+    },
+    "System.IO.Hashing/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Rfm2jYCaUeGysFEZjDe7j1R4x6Z6BzumS/vUT5a1AA/AWJuGX71PoGB0RmpyX3VmrGqVnAwtfMn39OHR8Y/5+g==",
+      "path": "system.io.hashing/6.0.0",
+      "hashPath": "system.io.hashing.6.0.0.nupkg.sha512"
     },
     "System.IO.Pipelines/6.0.3": {
       "type": "package",

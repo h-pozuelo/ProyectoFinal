@@ -157,6 +157,10 @@ C:\Users\Hugo\Downloads\Solution\Server\bin\Debug\net8.0\Server.pdb
 C:\Users\Hugo\Downloads\Solution\Server\bin\Debug\net8.0\AutoMapper.dll
 C:\Users\Hugo\Downloads\Solution\Server\bin\Debug\net8.0\Azure.Core.dll
 C:\Users\Hugo\Downloads\Solution\Server\bin\Debug\net8.0\Azure.Identity.dll
+C:\Users\Hugo\Downloads\Solution\Server\bin\Debug\net8.0\Azure.Storage.Blobs.dll
+C:\Users\Hugo\Downloads\Solution\Server\bin\Debug\net8.0\Azure.Storage.Common.dll
+C:\Users\Hugo\Downloads\Solution\Server\bin\Debug\net8.0\Azure.Storage.Files.Shares.dll
+C:\Users\Hugo\Downloads\Solution\Server\bin\Debug\net8.0\Azure.Storage.Queues.dll
 C:\Users\Hugo\Downloads\Solution\Server\bin\Debug\net8.0\Humanizer.dll
 C:\Users\Hugo\Downloads\Solution\Server\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\Hugo\Downloads\Solution\Server\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
@@ -175,6 +179,7 @@ C:\Users\Hugo\Downloads\Solution\Server\bin\Debug\net8.0\Microsoft.EntityFramewo
 C:\Users\Hugo\Downloads\Solution\Server\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Design.dll
 C:\Users\Hugo\Downloads\Solution\Server\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Users\Hugo\Downloads\Solution\Server\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\Users\Hugo\Downloads\Solution\Server\bin\Debug\net8.0\Microsoft.Extensions.Azure.dll
 C:\Users\Hugo\Downloads\Solution\Server\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
 C:\Users\Hugo\Downloads\Solution\Server\bin\Debug\net8.0\Microsoft.Extensions.FileProviders.Embedded.dll
 C:\Users\Hugo\Downloads\Solution\Server\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
@@ -204,6 +209,7 @@ C:\Users\Hugo\Downloads\Solution\Server\bin\Debug\net8.0\System.Composition.Type
 C:\Users\Hugo\Downloads\Solution\Server\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
 C:\Users\Hugo\Downloads\Solution\Server\bin\Debug\net8.0\System.Drawing.Common.dll
 C:\Users\Hugo\Downloads\Solution\Server\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Hugo\Downloads\Solution\Server\bin\Debug\net8.0\System.IO.Hashing.dll
 C:\Users\Hugo\Downloads\Solution\Server\bin\Debug\net8.0\System.Memory.Data.dll
 C:\Users\Hugo\Downloads\Solution\Server\bin\Debug\net8.0\System.Runtime.Caching.dll
 C:\Users\Hugo\Downloads\Solution\Server\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
