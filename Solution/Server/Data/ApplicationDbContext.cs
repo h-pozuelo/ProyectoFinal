@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Server.Configuration;
 using Server.Models;
+using Shared.Models;
 
 namespace Server.Data
 {
@@ -16,5 +17,10 @@ namespace Server.Data
 
             builder.ApplyConfiguration(new RoleConfiguration());
         }
+
+        public DbSet<Alojamiento> Alojamientos { get; set; }
+        public DbSet<Alquiler> Alquileres { get; set; }
+
+
     }
 }

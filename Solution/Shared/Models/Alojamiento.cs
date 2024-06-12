@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace Shared.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "El Id del propietario es obligatorio.")]
+        //[ForeignKey("Propietario")]
         public string IdPropietario { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "La dirección es obligatoria.")]
@@ -32,6 +34,9 @@ namespace Shared.Models
         public string Descripcion { get; set; } = string.Empty;
 
 
+        public virtual ICollection<Alquiler>? Alquileres { get; set; }
+        //public virtual Usuario? Propietario { get; set; }
+        
 
     }
 }

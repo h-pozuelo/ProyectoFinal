@@ -70,6 +70,7 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddScoped<IUsuariosService, UsuariosService>();
+builder.Services.AddScoped<IAlojamientoService, AlojamientoService>();
 
 var app = builder.Build();
 

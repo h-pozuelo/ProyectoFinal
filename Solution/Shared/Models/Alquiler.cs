@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,10 +14,12 @@ namespace Shared.Models
         public int Id { get; set; }
 
         [Required]
-        public int IdAlojamiento { get; set; } = 0;
+        [ForeignKey("Alojamiento")]
+        public int IdAlojamiento { get; set; }
 
         [Required]
-        public int IdInquilino { get; set; } = 0;
+        //[ForeignKey("Inquilino")]
+        public string IdInquilino { get; set; }
 
         [Required]
         public DateOnly FechaInicio { get; set; }
@@ -28,7 +31,8 @@ namespace Shared.Models
         [Range(0.01, double.MaxValue, ErrorMessage = "El precio total debe ser un valor positivo.")]
         public double PrecioTotal { get; set; } = 0;
 
-
+        public virtual Alojamiento? Alojamiento { get; set; }
+        //public virtual Usuario? Inquilino { get; set; }
 
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
