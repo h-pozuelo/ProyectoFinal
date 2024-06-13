@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Server;
 using Server.Data;
+using Server.Interfaces;
 using Server.JwtFeatures;
 using Server.Models;
 using Server.Services;
@@ -71,6 +72,7 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddScoped<IUsuariosService, UsuariosService>();
 builder.Services.AddScoped<IAlojamientoService, AlojamientoService>();
+builder.Services.AddScoped<IAlquilerService, AlquilerService>();
 
 var app = builder.Build();
 

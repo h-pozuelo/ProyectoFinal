@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Proyectos\\Github\\ProyectoFinal\\Solution\\Server\\Server.csproj": {}
+    "C:\\Users\\Alumnos MCSD Tarde\\Documents\\GitHub\\ProyectoFinal\\Solution\\Server\\Server.csproj": {}
   },
   "projects": {
-    "C:\\Proyectos\\Github\\ProyectoFinal\\Solution\\Server\\Server.csproj": {
+    "C:\\Users\\Alumnos MCSD Tarde\\Documents\\GitHub\\ProyectoFinal\\Solution\\Server\\Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Proyectos\\Github\\ProyectoFinal\\Solution\\Server\\Server.csproj",
+        "projectUniqueName": "C:\\Users\\Alumnos MCSD Tarde\\Documents\\GitHub\\ProyectoFinal\\Solution\\Server\\Server.csproj",
         "projectName": "Server",
-        "projectPath": "C:\\Proyectos\\Github\\ProyectoFinal\\Solution\\Server\\Server.csproj",
+        "projectPath": "C:\\Users\\Alumnos MCSD Tarde\\Documents\\GitHub\\ProyectoFinal\\Solution\\Server\\Server.csproj",
         "packagesPath": "C:\\Users\\Alumnos MCSD Tarde\\.nuget\\packages\\",
-        "outputPath": "C:\\Proyectos\\Github\\ProyectoFinal\\Solution\\Server\\obj\\",
+        "outputPath": "C:\\Users\\Alumnos MCSD Tarde\\Documents\\GitHub\\ProyectoFinal\\Solution\\Server\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Alumnos MCSD Tarde\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -22,15 +22,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Proyectos\\Github\\ProyectoFinal\\Solution\\Shared\\Shared.csproj": {
-                "projectPath": "C:\\Proyectos\\Github\\ProyectoFinal\\Solution\\Shared\\Shared.csproj"
+              "C:\\Users\\Alumnos MCSD Tarde\\Documents\\GitHub\\ProyectoFinal\\Solution\\Shared\\Shared.csproj": {
+                "projectPath": "C:\\Users\\Alumnos MCSD Tarde\\Documents\\GitHub\\ProyectoFinal\\Solution\\Shared\\Shared.csproj"
               }
             }
           }
@@ -39,11 +38,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -104,18 +98,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Proyectos\\Github\\ProyectoFinal\\Solution\\Shared\\Shared.csproj": {
+    "C:\\Users\\Alumnos MCSD Tarde\\Documents\\GitHub\\ProyectoFinal\\Solution\\Shared\\Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Proyectos\\Github\\ProyectoFinal\\Solution\\Shared\\Shared.csproj",
+        "projectUniqueName": "C:\\Users\\Alumnos MCSD Tarde\\Documents\\GitHub\\ProyectoFinal\\Solution\\Shared\\Shared.csproj",
         "projectName": "Shared",
-        "projectPath": "C:\\Proyectos\\Github\\ProyectoFinal\\Solution\\Shared\\Shared.csproj",
+        "projectPath": "C:\\Users\\Alumnos MCSD Tarde\\Documents\\GitHub\\ProyectoFinal\\Solution\\Shared\\Shared.csproj",
         "packagesPath": "C:\\Users\\Alumnos MCSD Tarde\\.nuget\\packages\\",
-        "outputPath": "C:\\Proyectos\\Github\\ProyectoFinal\\Solution\\Shared\\obj\\",
+        "outputPath": "C:\\Users\\Alumnos MCSD Tarde\\Documents\\GitHub\\ProyectoFinal\\Solution\\Shared\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Alumnos MCSD Tarde\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -126,7 +120,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -139,11 +132,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -165,7 +153,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,43 +1,43 @@
 {
   "Files": [
     {
-      "Id": "C:\\Proyectos\\Github\\ProyectoFinal\\Solution\\Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.webassembly.js",
+      "Id": "C:\\Users\\Alumnos MCSD Tarde\\Documents\\GitHub\\ProyectoFinal\\Solution\\Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.webassembly.js",
       "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js"
     },
     {
-      "Id": "C:\\Proyectos\\Github\\ProyectoFinal\\Solution\\Client\\obj\\Debug\\net8.0\\compressed\\qskpafoawm.gz",
+      "Id": "C:\\Users\\Alumnos MCSD Tarde\\Documents\\GitHub\\ProyectoFinal\\Solution\\Client\\obj\\Debug\\net8.0\\compressed\\qskpafoawm.gz",
       "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js.gz"
     },
     {
-      "Id": "C:\\Proyectos\\Github\\ProyectoFinal\\Solution\\Client\\obj\\Debug\\net8.0\\scopedcss\\bundle\\Client.styles.css",
+      "Id": "C:\\Users\\Alumnos MCSD Tarde\\Documents\\GitHub\\ProyectoFinal\\Solution\\Client\\obj\\Debug\\net8.0\\scopedcss\\bundle\\Client.styles.css",
       "PackagePath": "staticwebassets\\Client.styles.css"
     },
     {
-      "Id": "C:\\Proyectos\\Github\\ProyectoFinal\\Solution\\Client\\wwwroot\\css\\app.css",
+      "Id": "C:\\Users\\Alumnos MCSD Tarde\\Documents\\GitHub\\ProyectoFinal\\Solution\\Client\\wwwroot\\css\\app.css",
       "PackagePath": "staticwebassets\\css\\app.css"
     },
     {
-      "Id": "C:\\Proyectos\\Github\\ProyectoFinal\\Solution\\Client\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "Id": "C:\\Users\\Alumnos MCSD Tarde\\Documents\\GitHub\\ProyectoFinal\\Solution\\Client\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Id": "C:\\Proyectos\\Github\\ProyectoFinal\\Solution\\Client\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "Id": "C:\\Users\\Alumnos MCSD Tarde\\Documents\\GitHub\\ProyectoFinal\\Solution\\Client\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Id": "C:\\Proyectos\\Github\\ProyectoFinal\\Solution\\Client\\wwwroot\\favicon.png",
+      "Id": "C:\\Users\\Alumnos MCSD Tarde\\Documents\\GitHub\\ProyectoFinal\\Solution\\Client\\wwwroot\\favicon.png",
       "PackagePath": "staticwebassets\\favicon.png"
     },
     {
-      "Id": "C:\\Proyectos\\Github\\ProyectoFinal\\Solution\\Client\\wwwroot\\icon-192.png",
+      "Id": "C:\\Users\\Alumnos MCSD Tarde\\Documents\\GitHub\\ProyectoFinal\\Solution\\Client\\wwwroot\\icon-192.png",
       "PackagePath": "staticwebassets\\icon-192.png"
     },
     {
-      "Id": "C:\\Proyectos\\Github\\ProyectoFinal\\Solution\\Client\\wwwroot\\index.html",
+      "Id": "C:\\Users\\Alumnos MCSD Tarde\\Documents\\GitHub\\ProyectoFinal\\Solution\\Client\\wwwroot\\index.html",
       "PackagePath": "staticwebassets\\index.html"
     },
     {
-      "Id": "C:\\Proyectos\\Github\\ProyectoFinal\\Solution\\Client\\wwwroot\\sample-data\\weather.json",
+      "Id": "C:\\Users\\Alumnos MCSD Tarde\\Documents\\GitHub\\ProyectoFinal\\Solution\\Client\\wwwroot\\sample-data\\weather.json",
       "PackagePath": "staticwebassets\\sample-data\\weather.json"
     },
     {

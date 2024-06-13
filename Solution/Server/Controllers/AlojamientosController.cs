@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Shared.Models;
-using Shared.Services;
+using Server.Models;
+using Server.Interfaces;
 
 namespace Server.Controllers
 {

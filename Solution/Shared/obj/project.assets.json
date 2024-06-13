@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Proyectos\\Github\\ProyectoFinal\\Solution\\Shared\\Shared.csproj",
+      "projectUniqueName": "C:\\Users\\Alumnos MCSD Tarde\\Documents\\GitHub\\ProyectoFinal\\Solution\\Shared\\Shared.csproj",
       "projectName": "Shared",
-      "projectPath": "C:\\Proyectos\\Github\\ProyectoFinal\\Solution\\Shared\\Shared.csproj",
+      "projectPath": "C:\\Users\\Alumnos MCSD Tarde\\Documents\\GitHub\\ProyectoFinal\\Solution\\Shared\\Shared.csproj",
       "packagesPath": "C:\\Users\\Alumnos MCSD Tarde\\.nuget\\packages\\",
-      "outputPath": "C:\\Proyectos\\Github\\ProyectoFinal\\Solution\\Shared\\obj\\",
+      "outputPath": "C:\\Users\\Alumnos MCSD Tarde\\Documents\\GitHub\\ProyectoFinal\\Solution\\Shared\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Alumnos MCSD Tarde\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,7 +28,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -41,11 +40,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -67,7 +61,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

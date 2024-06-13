@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Server.Configuration;
 using Server.Models;
-using Shared.Models;
 
 namespace Server.Data
 {
@@ -11,11 +10,28 @@ namespace Server.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-        protected override void OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(builder);
+            base.OnModelCreating(modelBuilder);
 
-            builder.ApplyConfiguration(new RoleConfiguration());
+            modelBuilder.ApplyConfiguration(new RoleConfiguration());
+
+            modelBuilder.Entity<Alojamiento>()
+            .HasOne(a => a.Propietario)
+            .WithMany(u => u.Alojamientos)
+            .HasForeignKey(a => a.IdPropietario)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            // Configuración de la relación muchos a muchos entre Usuario y Alojamiento a través de Alquiler
+            modelBuilder.Entity<Alquiler>()
+                .HasOne(a => a.Alojamiento)
+                .WithMany(al => al.Alquileres)
+                .HasForeignKey(a => a.IdAlojamiento);
+
+            modelBuilder.Entity<Alquiler>()
+                .HasOne(a => a.Inquilino)
+                .WithMany(u => u.Alquileres)
+                .HasForeignKey(a => a.IdInquilino);
         }
 
         public DbSet<Alojamiento> Alojamientos { get; set; }

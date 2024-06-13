@@ -7,5 +7,8 @@ namespace Server.Models
     {
         public string? NombreCompleto { get; set; }
         public DateTime FechaRegistro { get; set; }
+
+        public virtual IEnumerable<Alojamiento>? Alojamientos { get; set; }
+        public virtual IEnumerable<Alquiler>? Alquileres { get; set; }
     }
 }

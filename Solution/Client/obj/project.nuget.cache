@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "QeXuvAUhkNQ=",
+  "dgSpecHash": "xo12NDny248yLUL3UY+Q3YzGlqaqgV9lfsZ3IHWT5VRlWDD5pvtnqLjZNrVHV7DXPImRcDS+6y2hcUfqeeLUbg==",
   "success": true,
-  "projectFilePath": "C:\\Proyectos\\Github\\ProyectoFinal\\Solution\\Client\\Client.csproj",
+  "projectFilePath": "C:\\Users\\Alumnos MCSD Tarde\\Documents\\GitHub\\ProyectoFinal\\Solution\\Client\\Client.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Alumnos MCSD Tarde\\.nuget\\packages\\blazored.localstorage\\4.5.0\\blazored.localstorage.4.5.0.nupkg.sha512",
     "C:\\Users\\Alumnos MCSD Tarde\\.nuget\\packages\\microsoft.aspnetcore.authorization\\8.0.6\\microsoft.aspnetcore.authorization.8.0.6.nupkg.sha512",
@@ -30,12 +30,12 @@
     "C:\\Users\\Alumnos MCSD Tarde\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512",
     "C:\\Users\\Alumnos MCSD Tarde\\.nuget\\packages\\microsoft.jsinterop\\8.0.1\\microsoft.jsinterop.8.0.1.nupkg.sha512",
     "C:\\Users\\Alumnos MCSD Tarde\\.nuget\\packages\\microsoft.jsinterop.webassembly\\8.0.1\\microsoft.jsinterop.webassembly.8.0.1.nupkg.sha512",
-    "C:\\Users\\Alumnos MCSD Tarde\\.nuget\\packages\\microsoft.net.illink.tasks\\8.0.5\\microsoft.net.illink.tasks.8.0.5.nupkg.sha512",
-    "C:\\Users\\Alumnos MCSD Tarde\\.nuget\\packages\\microsoft.net.sdk.webassembly.pack\\8.0.5\\microsoft.net.sdk.webassembly.pack.8.0.5.nupkg.sha512",
+    "C:\\Users\\Alumnos MCSD Tarde\\.nuget\\packages\\microsoft.net.illink.tasks\\8.0.1\\microsoft.net.illink.tasks.8.0.1.nupkg.sha512",
+    "C:\\Users\\Alumnos MCSD Tarde\\.nuget\\packages\\microsoft.net.sdk.webassembly.pack\\8.0.1\\microsoft.net.sdk.webassembly.pack.8.0.1.nupkg.sha512",
     "C:\\Users\\Alumnos MCSD Tarde\\.nuget\\packages\\system.io.pipelines\\8.0.0\\system.io.pipelines.8.0.0.nupkg.sha512",
     "C:\\Users\\Alumnos MCSD Tarde\\.nuget\\packages\\system.text.encodings.web\\8.0.0\\system.text.encodings.web.8.0.0.nupkg.sha512",
     "C:\\Users\\Alumnos MCSD Tarde\\.nuget\\packages\\system.text.json\\8.0.0\\system.text.json.8.0.0.nupkg.sha512",
-    "C:\\Users\\Alumnos MCSD Tarde\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.5\\microsoft.netcore.app.runtime.mono.browser-wasm.8.0.5.nupkg.sha512"
+    "C:\\Users\\Alumnos MCSD Tarde\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.1\\microsoft.netcore.app.runtime.mono.browser-wasm.8.0.1.nupkg.sha512"
   ],
   "logs": []
 }

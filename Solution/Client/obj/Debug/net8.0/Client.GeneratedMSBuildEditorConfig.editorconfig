@@ -13,51 +13,51 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = browser
 build_property.RootNamespace = Client
 build_property.RootNamespace = Client
-build_property.ProjectDir = C:\Proyectos\Github\ProyectoFinal\Solution\Client\
+build_property.ProjectDir = C:\Users\Alumnos MCSD Tarde\Documents\GitHub\ProyectoFinal\Solution\Client\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = false
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Proyectos\Github\ProyectoFinal\Solution\Client
+build_property.MSBuildProjectDirectory = C:\Users\Alumnos MCSD Tarde\Documents\GitHub\ProyectoFinal\Solution\Client
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Proyectos/Github/ProyectoFinal/Solution/Client/App.razor]
+[C:/Users/Alumnos MCSD Tarde/Documents/GitHub/ProyectoFinal/Solution/Client/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Proyectos/Github/ProyectoFinal/Solution/Client/Pages/Home.razor]
+[C:/Users/Alumnos MCSD Tarde/Documents/GitHub/ProyectoFinal/Solution/Client/Pages/Home.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Proyectos/Github/ProyectoFinal/Solution/Client/Pages/Login.razor]
+[C:/Users/Alumnos MCSD Tarde/Documents/GitHub/ProyectoFinal/Solution/Client/Pages/Login.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Proyectos/Github/ProyectoFinal/Solution/Client/Pages/LoginDisplay.razor]
+[C:/Users/Alumnos MCSD Tarde/Documents/GitHub/ProyectoFinal/Solution/Client/Pages/LoginDisplay.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW5EaXNwbGF5LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Proyectos/Github/ProyectoFinal/Solution/Client/Pages/Logout.razor]
+[C:/Users/Alumnos MCSD Tarde/Documents/GitHub/ProyectoFinal/Solution/Client/Pages/Logout.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9nb3V0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Proyectos/Github/ProyectoFinal/Solution/Client/Pages/Perfil.razor]
+[C:/Users/Alumnos MCSD Tarde/Documents/GitHub/ProyectoFinal/Solution/Client/Pages/Perfil.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGVyZmlsLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Proyectos/Github/ProyectoFinal/Solution/Client/Pages/Register.razor]
+[C:/Users/Alumnos MCSD Tarde/Documents/GitHub/ProyectoFinal/Solution/Client/Pages/Register.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0ZXIucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Proyectos/Github/ProyectoFinal/Solution/Client/_Imports.razor]
+[C:/Users/Alumnos MCSD Tarde/Documents/GitHub/ProyectoFinal/Solution/Client/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Proyectos/Github/ProyectoFinal/Solution/Client/Layout/MainLayout.razor]
+[C:/Users/Alumnos MCSD Tarde/Documents/GitHub/ProyectoFinal/Solution/Client/Layout/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XE1haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-tmopy668it
 
-[C:/Proyectos/Github/ProyectoFinal/Solution/Client/Layout/NavMenu.razor]
+[C:/Users/Alumnos MCSD Tarde/Documents/GitHub/ProyectoFinal/Solution/Client/Layout/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XE5hdk1lbnUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-9qkkwgv1yd
