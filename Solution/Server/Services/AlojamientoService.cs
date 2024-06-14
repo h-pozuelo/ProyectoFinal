@@ -47,26 +47,34 @@ namespace Server.Services
 
         }
 
+
         public async Task<Alojamiento> UpdateAlojamiento(Alojamiento alojamiento)
         {
-            var nuevoAlojamiento = await GetAlojamiento(alojamiento.Id);
-            if (nuevoAlojamiento != null)
+            var AlojamientoUpdate = await GetAlojamiento(alojamiento.Id);
+            if (AlojamientoUpdate != null)
             {
-                nuevoAlojamiento.IdPropietario = alojamiento.IdPropietario;
-                nuevoAlojamiento.Direccion = alojamiento.Direccion;//Posible cambio
-                nuevoAlojamiento.NumeroHabitaciones = alojamiento.NumeroHabitaciones;
-                nuevoAlojamiento.CapacidadInvitados = alojamiento.CapacidadInvitados;
-                nuevoAlojamiento.PrecioNoche = alojamiento.PrecioNoche;
-                nuevoAlojamiento.Descripcion = alojamiento.Descripcion;
+                AlojamientoUpdate.IdPropietario = alojamiento.IdPropietario;
+                AlojamientoUpdate.Direccion = alojamiento.Direccion;//Posible cambio
+                AlojamientoUpdate.NumeroHabitaciones = alojamiento.NumeroHabitaciones;
+                AlojamientoUpdate.CapacidadInvitados = alojamiento.CapacidadInvitados;
+                AlojamientoUpdate.PrecioNoche = alojamiento.PrecioNoche;
+                AlojamientoUpdate.Descripcion = alojamiento.Descripcion;
 
                 await _context.SaveChangesAsync();
-                return nuevoAlojamiento;
+                return AlojamientoUpdate;
             }
             else
             {
                 return null;
 
             }
+        }
+        public async Task<IEnumerable<Alojamiento>> GetAlojamientosByUser(string id)
+        {
+            var alojamientoByUser = await _context.Alojamientos
+                .Where(a => a.IdPropietario == id)
+                .ToListAsync();
+            return alojamientoByUser;
         }
     }
 }

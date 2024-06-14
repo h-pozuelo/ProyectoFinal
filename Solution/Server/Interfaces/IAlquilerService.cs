@@ -9,5 +9,8 @@ namespace Server.Interfaces
         public Task<Alquiler> CreateAlquiler(Alquiler alquiler);
         public Task<Alquiler> UpdateAlquiler(Alquiler alquiler);
         public Task DeleteAlquiler(int id);
+
+        public Task<IEnumerable<Alquiler>> GetAlquileresByUser(int id);
+        public Task<IEnumerable<Alquiler>> GetAlquileresByAlojamiento(int id);
     }
 }

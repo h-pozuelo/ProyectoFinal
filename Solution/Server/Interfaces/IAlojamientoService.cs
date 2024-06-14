@@ -11,5 +11,7 @@ namespace Server.Interfaces
         public Task<Alojamiento> UpdateAlojamiento(Alojamiento alojamiento);
         public Task DeleteAlojamiento(int id);
 
+        public Task<IEnumerable<Alojamiento>> GetAlojamientosByUser(int id);
+
     }
 }

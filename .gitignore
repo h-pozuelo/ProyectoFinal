@@ -1,0 +1,15 @@
+#carpetas que no queremos subir
+bin
+obj
+packages
+.vs
+node_modules
+.cache
+
+#para ignorar un archivo -> nombreArchivo.Extension (cualquier carpeta)
+
+#para un archivo o carpeta concretos-> /carpeta/subcarpeta  o  /carpeta/subcarpeta/archivo.extension
+
+#para ignorar archivos por extension (sin tener en cuenta el nombre -> *.extension
+
+*.zip

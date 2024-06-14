@@ -49,19 +49,35 @@ namespace Server.Services
 
         public async Task<Alquiler> UpdateAlquiler(Alquiler alquiler)
         {
-            var nuevoAlquiler = await GetAlquiler(alquiler.Id);
+            var AlquilerUpdate = await GetAlquiler(alquiler.Id);
 
-            if (nuevoAlquiler != null)
+            if (AlquilerUpdate != null)
             {
-                nuevoAlquiler.IdAlojamiento = alquiler.IdAlojamiento;
-                nuevoAlquiler.IdInquilino = alquiler.IdInquilino;
-                nuevoAlquiler.FechaInicio = alquiler.FechaInicio;
-                nuevoAlquiler.FechaFin = alquiler.FechaFin;
-                nuevoAlquiler.PrecioTotal = alquiler.PrecioTotal;
+                AlquilerUpdate.IdAlojamiento = alquiler.IdAlojamiento;
+                AlquilerUpdate.IdInquilino = alquiler.IdInquilino;
+                AlquilerUpdate.FechaInicio = alquiler.FechaInicio;
+                AlquilerUpdate.FechaFin = alquiler.FechaFin;
+                AlquilerUpdate.PrecioTotal = alquiler.PrecioTotal;
 
                 await _context.SaveChangesAsync();
             }
-            return nuevoAlquiler;
+            return AlquilerUpdate;
+        }
+
+        public async Task<IEnumerable<Alquiler>> GetAlquileresByAlojamiento(int id)
+        {
+            var alquilerByAlojamiento = await _context.Alquileres
+                .Where(a => a.IdAlojamiento == id)
+                .ToListAsync();
+            return alquilerByAlojamiento;
+        }
+
+        public async Task<IEnumerable<Alquiler>> GetAlquileresByUser(string id)
+        {
+            var alquilerByUser = await _context.Alquileres
+                .Where(a => a.IdInquilino == id)
+                .ToListAsync();
+            return alquilerByUser;
         }
     }
 }
