@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Server.Models;
-using Server.Interfaces;
+using Shared.Services;
+using Shared.DataTransferObjects;
 
 namespace Server.Controllers
 {
@@ -33,7 +34,7 @@ namespace Server.Controllers
 
 
         [HttpPost("CreateAlquiler")]
-        public async Task<IActionResult> CreateAlquiler([FromBody] Alquiler alquiler)
+        public async Task<IActionResult> CreateAlquiler([FromBody] AlquilerDto alquiler)
         {
             if (alquiler == null || !ModelState.IsValid)
                 return BadRequest();
@@ -43,7 +44,7 @@ namespace Server.Controllers
         }
 
         [HttpPut("UpdateAlquiler")]
-        public async Task<IActionResult> UpdateAlquiler([FromBody] Alquiler alquiler)
+        public async Task<IActionResult> UpdateAlquiler([FromBody] AlquilerDto alquiler)
         {
             if (alquiler == null || !ModelState.IsValid)
                 return BadRequest();

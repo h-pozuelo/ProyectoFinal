@@ -2,7 +2,9 @@
 using Server.Data;
 using Server.Models;
 using Server.Models;
-using Server.Interfaces;
+using Shared.Services;
+using AutoMapper;
+using Shared.DataTransferObjects;
 
 namespace Server.Services
 {
@@ -10,23 +12,26 @@ namespace Server.Services
     {
 
         private readonly ApplicationDbContext _context;
+        private readonly IMapper _mapper;
 
-        public AlquilerService(ApplicationDbContext context)
+        public AlquilerService(ApplicationDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
 
-        public async Task<Alquiler> CreateAlquiler(Alquiler alquiler)
+        public async Task<AlquilerDto> CreateAlquiler(AlquilerDto alquiler)
         {
-            _context.Alquileres.Add(alquiler);
+            var result = _context.Alquileres.Add(_mapper.Map<Alquiler>(alquiler));
             await _context.SaveChangesAsync();
-            return alquiler;
+            return _mapper.Map<AlquilerDto>(result);
         }
 
         public async Task DeleteAlquiler(int id)
         {
-            var alquilerBorrar = await GetAlquiler(id);
+            //var alquilerBorrar = await GetAlquiler(id);
+            var alquilerBorrar = await _context.Alquileres.FindAsync(id);
             if (alquilerBorrar != null)
             {
                 _context.Alquileres.Remove(alquilerBorrar);
@@ -34,49 +39,56 @@ namespace Server.Services
             }
         }
 
-        public async Task<IEnumerable<Alquiler>> GetAllAlquileres()
+        public async Task<IEnumerable<AlquilerDto>> GetAllAlquileres()
         {
-            var alquileres = await _context.Alquileres.ToListAsync();
+            var alquileres = _mapper.Map<IEnumerable<AlquilerDto>>(await _context.Alquileres.ToListAsync());
             return alquileres;
         }
 
-        public async Task<Alquiler> GetAlquiler(int id)
+        public async Task<AlquilerDto> GetAlquiler(int id)
         {
-            var alquiler = await _context.Alquileres
-                .FirstOrDefaultAsync(a => a.Id == id);
+            var alquiler = _mapper.Map<AlquilerDto>(await _context.Alquileres
+                .FirstOrDefaultAsync(a => a.Id == id));
             return alquiler;
         }
 
-        public async Task<Alquiler> UpdateAlquiler(Alquiler alquiler)
+        public async Task<AlquilerDto> UpdateAlquiler(AlquilerDto alquiler)
         {
-            var AlquilerUpdate = await GetAlquiler(alquiler.Id);
-
+            //var AlquilerUpdate = await GetAlquiler(alquiler.Id);
+            var AlquilerUpdate = await _context.Alquileres.FindAsync(alquiler.Id);
             if (AlquilerUpdate != null)
             {
-                AlquilerUpdate.IdAlojamiento = alquiler.IdAlojamiento;
-                AlquilerUpdate.IdInquilino = alquiler.IdInquilino;
-                AlquilerUpdate.FechaInicio = alquiler.FechaInicio;
-                AlquilerUpdate.FechaFin = alquiler.FechaFin;
-                AlquilerUpdate.PrecioTotal = alquiler.PrecioTotal;
+                //AlquilerUpdate.IdAlojamiento = alquiler.IdAlojamiento;
+                //AlquilerUpdate.IdInquilino = alquiler.IdInquilino;
+                //AlquilerUpdate.FechaInicio = alquiler.FechaInicio;
+                //AlquilerUpdate.FechaFin = alquiler.FechaFin;
+                //AlquilerUpdate.PrecioTotal = alquiler.PrecioTotal;
+
+                _mapper.Map<AlquilerDto, Alquiler>(alquiler, AlquilerUpdate);
 
                 await _context.SaveChangesAsync();
+                return _mapper.Map<AlquilerDto>(AlquilerUpdate);
             }
-            return AlquilerUpdate;
+            else
+            {
+                return null;
+            }
+            //return AlquilerUpdate;
         }
 
-        public async Task<IEnumerable<Alquiler>> GetAlquileresByAlojamiento(int id)
+        public async Task<IEnumerable<AlquilerDto>> GetAlquileresByAlojamiento(int id)
         {
-            var alquilerByAlojamiento = await _context.Alquileres
+            var alquilerByAlojamiento = _mapper.Map<IEnumerable<Alquiler>>(await _context.Alquileres
                 .Where(a => a.IdAlojamiento == id)
-                .ToListAsync();
+                .ToListAsync());
             return alquilerByAlojamiento;
         }
 
-        public async Task<IEnumerable<Alquiler>> GetAlquileresByUser(string id)
+        public async Task<IEnumerable<AlquilerDto>> GetAlquileresByUser(string id)
         {
-            var alquilerByUser = await _context.Alquileres
+            var alquilerByUser = _mapper.Map<IEnumerable<AlquilerDto>>(await _context.Alquileres
                 .Where(a => a.IdInquilino == id)
-                .ToListAsync();
+                .ToListAsync());
             return alquilerByUser;
         }
     }

@@ -20,11 +20,11 @@ namespace Shared.DataTransferObjects
         [Required]
         public string IdInquilino { get; set; }
 
-        [Required]
-        public DateOnly FechaInicio { get; set; }
+        [Required, DataType(DataType.Date)]
+        public DateTime FechaInicio { get; set; }
 
-        [Required]
-        public DateOnly FechaFin { get; set; }
+        [Required, DataType(DataType.Date)]
+        public DateTime FechaFin { get; set; }
 
         [Required]
         [Range(0.01, double.MaxValue, ErrorMessage = "El precio total debe ser un valor positivo.")]

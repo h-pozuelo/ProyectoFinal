@@ -2,7 +2,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Server.Models;
-using Server.Interfaces;
+using Shared.Services;
+using Shared.DataTransferObjects;
 
 namespace Server.Controllers
 {
@@ -37,7 +38,7 @@ namespace Server.Controllers
 
 
         [HttpPost("CreateAlojamiento")]
-        public async Task<IActionResult> CreateAlojamiento([FromBody] Alojamiento alojamiento)
+        public async Task<IActionResult> CreateAlojamiento([FromBody] AlojamientoDto alojamiento)
         {
             if (alojamiento == null || !ModelState.IsValid)
                 return BadRequest();
@@ -48,7 +49,7 @@ namespace Server.Controllers
 
 
         [HttpPut("UpdateAlojamiento")]
-        public async Task<IActionResult> UpdateAlojamiento([FromBody] Alojamiento alojamiento)
+        public async Task<IActionResult> UpdateAlojamiento([FromBody] AlojamientoDto alojamiento)
         {
             if (alojamiento == null || !ModelState.IsValid)
                 return BadRequest();
