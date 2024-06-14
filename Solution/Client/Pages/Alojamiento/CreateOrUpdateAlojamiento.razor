@@ -1,5 +1,137 @@
-﻿<h3>CreateOrUpdateAlojamiento</h3>
+﻿@page "/CreateOrUpdateAlojamiento/{id:int?}"
+@using Client.Services
+@using Shared.DataTransferObjects
+@using Shared.Services
+@using Microsoft.AspNetCore.Components.Authorization
+@inject IAlojamientoService alojamientoService
+@inject NavigationManager navigationManager
+@inject AuthenticationStateProvider StateProvider
+
+<h3>@(IsEdit ? "Actualizar Alojamiento" : "Crear Alojamiento")</h3>
+
+
+<div class="card">
+    <div class="card-body">
+        <h3 class="card-title">Crear un alojamiento</h3>
+        <EditForm Model="CreateUpdateModel" OnValidSubmit="CreateOrUpdate">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <InputNumber id="Id" @bind-Value="CreateUpdateModel.Id" hidden />
+            <InputNumber id="IdPropietario" @bind-Value="CreateUpdateModel.IdPropietario" />
+
+            <div class="form-group mb-3">
+                <label for="Titulo">Titulo</label>
+                <InputText id="Titulo" class="form-control" @bind-Value="CreateUpdateModel.Titulo" />
+                <ValidationMessage For="@(() => CreateUpdateModel.Titulo)" />
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="Direccion">Dirección</label>
+                <InputText id="Direccion" class="form-control" @bind-Value="CreateUpdateModel.Direccion" />
+                <ValidationMessage For="@(() => CreateUpdateModel.Direccion)" />
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="NumeroHabitaciones">Numero de Habitaciones</label>
+                <InputNumber id="NumeroHabitaciones" class="form-control" @bind-Value="CreateUpdateModel.NumeroHabitaciones" />
+                <ValidationMessage For="@(() => CreateUpdateModel.NumeroHabitaciones)" />
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="CapacidadInvitados">Capacidad de Invitados</label>
+                <InputNumber id="CapacidadInvitados" class="form-control" @bind-Value="CreateUpdateModel.CapacidadInvitados" />
+                <ValidationMessage For="@(() => CreateUpdateModel.CapacidadInvitados)" />
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="PrecioNoche">Precio por Noche</label>
+                <InputNumber id="PrecioNoche" class="form-control" @bind-Value="CreateUpdateModel.PrecioNoche" />
+                <ValidationMessage For="@(() => CreateUpdateModel.PrecioNoche)" />
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="NombreComunidad">Comunidad Autonoma</label>
+                <InputText id="NombreComunidad" class="form-control" @bind-Value="CreateUpdateModel.NombreComunidad" />
+                <ValidationMessage For="@(() => CreateUpdateModel.NombreComunidad)" />
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="NombreProvincia">Provincia</label>
+                <InputText id="NombreProvincia" class="form-control" @bind-Value="CreateUpdateModel.NombreProvincia" />
+                <ValidationMessage For="@(() => CreateUpdateModel.NombreProvincia)" />
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="NombreCiudad">Ciudad</label>
+                <InputText id="NombreCiudad" class="form-control" @bind-Value="CreateUpdateModel.NombreCiudad" />
+                <ValidationMessage For="@(() => CreateUpdateModel.NombreCiudad)" />
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="FechaPublicacion">Fecha de Publicacion</label>
+                <InputDate id="FechaPublicacion" class="form-control" @bind-Value="CreateUpdateModel.FechaPublicacion" />
+                <ValidationMessage For="@(() => CreateUpdateModel.FechaPublicacion)" />
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="Descripcion">Descripcion</label>
+                <InputText id="Descripcion" class="form-control" @bind-Value="CreateUpdateModel.Descripcion" />
+                <ValidationMessage For="@(() => CreateUpdateModel.Descripcion)" />
+            </div>
+
+
+            <hr />
+
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-outline-primary">Guardar</button>
+            </div>
+
+        </EditForm>
+    </div>
+
+</div>
+
+
+
 
 @code {
+    private AlojamientoDto CreateUpdateModel = new AlojamientoDto();
+    [Parameter] public int id { get; set; }
+    private bool IsEdit => id != 0;
+    private string idUsuario = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (IsEdit)
+        {
+            CreateUpdateModel = await alojamientoService.GetAlojamiento(id);
+
+        }
+        else
+        {
+            idUsuario = (await StateProvider.GetAuthenticationStateAsync()).User.FindFirst("Id")!.Value;
+            CreateUpdateModel.IdPropietario = idUsuario;
+
+        }
+    }
+
+    private async Task CreateOrUpdate()
+    {
+        if (IsEdit)
+        {
+            // Llamar al servicio para actualizar el alojamiento
+            await alojamientoService.UpdateAlojamiento(CreateUpdateModel);
+        }
+        else
+        {
+            // Llamar al servicio para crear un nuevo alojamiento
+            await alojamientoService.CreateAlojamiento(CreateUpdateModel);
+        }
+
+        // Redirigir a otra página o mostrar un mensaje de éxito
+        navigationManager.NavigateTo("/alojamientos");
+    }
+
 
 }
