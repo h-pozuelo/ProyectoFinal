@@ -20,9 +20,9 @@ namespace Server.Services
 
         public async Task<AlojamientoDto> CreateAlojamiento(AlojamientoDto alojamiento)
         {
-            var result = _context.Alojamientos.Add(_mapper.Map<Alojamiento>(alojamiento));
+            _context.Alojamientos.Add(_mapper.Map<Alojamiento>(alojamiento));
             await _context.SaveChangesAsync();
-            return _mapper.Map<AlojamientoDto>(result);
+            return _mapper.Map<AlojamientoDto>(alojamiento);
 
         }
 

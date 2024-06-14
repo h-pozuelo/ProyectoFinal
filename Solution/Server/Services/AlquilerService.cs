@@ -23,9 +23,9 @@ namespace Server.Services
 
         public async Task<AlquilerDto> CreateAlquiler(AlquilerDto alquiler)
         {
-            var result = _context.Alquileres.Add(_mapper.Map<Alquiler>(alquiler));
+            _context.Alquileres.Add(_mapper.Map<Alquiler>(alquiler));
             await _context.SaveChangesAsync();
-            return _mapper.Map<AlquilerDto>(result);
+            return _mapper.Map<AlquilerDto>(alquiler);
         }
 
         public async Task DeleteAlquiler(int id)
