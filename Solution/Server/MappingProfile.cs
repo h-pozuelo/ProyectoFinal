@@ -19,6 +19,16 @@ namespace Server
                 .ForMember(u => u.NombreCompleto, opt => opt.MapFrom(x => x.FullName));
             CreateMap<Usuario, UserForUpdateDto>()
                 .ForMember(x => x.FullName, opt => opt.MapFrom(u => u.NombreCompleto));
+
+            CreateMap<AlojamientoDto, Alojamiento>()
+                .ForMember(a => a.Propietario, opt => opt.Ignore())
+                .ForMember(a => a.Alquileres, opt => opt.Ignore());
+            CreateMap<Alojamiento, AlojamientoDto>();
+
+            CreateMap<AlquilerDto, Alquiler>()
+                .ForMember(al => al.Alojamiento, opt => opt.Ignore())
+                .ForMember(al => al.Inquilino, opt => opt.Ignore());
+            CreateMap<Alquiler, AlquilerDto>();
         }
     }
 }
