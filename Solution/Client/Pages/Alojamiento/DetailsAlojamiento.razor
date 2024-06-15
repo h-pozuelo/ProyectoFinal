@@ -28,6 +28,7 @@ else
                 <p><strong>Fecha de Publicación:</strong> @alojamiento.FechaPublicacion.ToShortDateString()</p>
                 <p><strong>Descripción:</strong> @alojamiento.Descripcion</p>
                 <button @onclick="GoBack" class="btn btn-secondary">Volver</button>
+                <button @onclick="CreateAlquiler" class="btn btn-primary">Crear Alquiler</button>
             </div>
         </div>
     </div>
@@ -46,4 +47,10 @@ else
     {
         navigationManager.NavigateTo("/listalojamientos");
     }
+
+    private void CreateAlquiler()
+    {
+        navigationManager.NavigateTo($"/createalquiler/{id}");
+    }
+
 }

@@ -1,0 +1,32 @@
+﻿@page "/createalquiler/{id:int}"
+@using Shared.Services
+@using Microsoft.AspNetCore.Components.Authorization
+@inject NavigationManager navigationManager
+@inject AuthenticationStateProvider StateProvider
+
+<h3>Crear Alquiler</h3>
+
+<InputNumber @bind-Value="@id" class="form-control" readonly />
+<InputText @bind-Value="@idUsuario" class="form-control" readonly />
+
+
+
+
+
+<button @onclick="SaveAlquiler" class="btn btn-primary">Guardar Alquiler</button>
+
+@code {
+    [Parameter] public int id { get; set; }
+
+    private string idUsuario = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        idUsuario = (await StateProvider.GetAuthenticationStateAsync()).User.FindFirst("Id")!.Value;
+    }
+
+    private void SaveAlquiler()
+    {
+        navigationManager.NavigateTo("/listalojamientos");
+    }
+}
