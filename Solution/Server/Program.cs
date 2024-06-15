@@ -9,6 +9,8 @@ using Server.Models;
 using Server.Services;
 using Shared.Services;
 using System.Text;
+using Microsoft.Extensions.Azure;
+using Microsoft.Azure.Cosmos;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -72,6 +74,28 @@ builder.Services.AddCors(options =>
 builder.Services.AddScoped<IUsuariosService, UsuariosService>();
 builder.Services.AddScoped<IAlojamientoService, AlojamientoService>();
 builder.Services.AddScoped<IAlquilerService, AlquilerService>();
+builder.Services.AddAzureClients(clientBuilder =>
+{
+    clientBuilder.AddBlobServiceClient(builder.Configuration["StorageConnectionString:blob"]!, preferMsi: true);
+    clientBuilder.AddQueueServiceClient(builder.Configuration["StorageConnectionString:queue"]!, preferMsi: true);
+});
+
+builder.Services.AddScoped<IImagesService, ImagesService>();
+
+
+builder.Services.AddSingleton<CosmosClient>(options =>
+{
+    var cosmosDb = builder.Configuration.GetSection("CosmosDb");
+
+    return new CosmosClient(
+        cosmosDb["Account"],
+        cosmosDb["Key"],
+        new CosmosClientOptions
+        {
+            ConnectionMode = ConnectionMode.Gateway
+        });
+});
+builder.Services.AddSingleton<IUbicacionesService, UbicacionesService>();
 
 var app = builder.Build();
 

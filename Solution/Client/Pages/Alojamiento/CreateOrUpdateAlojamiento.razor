@@ -2,16 +2,18 @@
 @using Client.Services
 @using Shared.DataTransferObjects
 @using Shared.Services
+@using Shared.Models
 @using Microsoft.AspNetCore.Components.Authorization
 @inject IAlojamientoService alojamientoService
 @inject NavigationManager navigationManager
 @inject AuthenticationStateProvider StateProvider
+@inject IUbicacionesService UbicacionesService
 
 
 
 <div class="card">
     <div class="card-body">
-<h3>@(IsEdit ? "Actualizar Alojamiento" : "Crear Alojamiento")</h3>
+        <h3>@(IsEdit ? "Actualizar Alojamiento" : "Crear Alojamiento")</h3>
         <EditForm Model="CreateUpdateModel" OnValidSubmit="CreateOrUpdate">
             <DataAnnotationsValidator />
             <ValidationSummary />
@@ -50,28 +52,56 @@
             </div>
 
             <div class="form-group mb-3">
-                <label for="NombreComunidad">Comunidad Autonoma</label>
-                <InputText id="NombreComunidad" class="form-control" @bind-Value="CreateUpdateModel.NombreComunidad" />
+                <label for="nombreComunidad">Comunidad</label>
+                <InputSelect id="nombreComunidad" class="form-select"
+                             TValue="string"
+                             Value="CreateUpdateModel.NombreComunidad"
+                             ValueChanged="OnSelectedComunidadChanged"
+                             ValueExpression="(() => CreateUpdateModel.NombreComunidad)">
+                    <option value="">-- selecciona una comunidad --</option>
+                    @foreach (var comunidad in comunidadesList)
+                    {
+                        <option value="@comunidad.Nombre">@comunidad.Nombre</option>
+                    }
+                </InputSelect>
                 <ValidationMessage For="@(() => CreateUpdateModel.NombreComunidad)" />
             </div>
 
             <div class="form-group mb-3">
-                <label for="NombreProvincia">Provincia</label>
-                <InputText id="NombreProvincia" class="form-control" @bind-Value="CreateUpdateModel.NombreProvincia" />
+                <label for="nombreProvincia">Provincia</label>
+                <InputSelect id="nombreProvincia" class="form-select"
+                             TValue="string"
+                             Value="CreateUpdateModel.NombreProvincia"
+                             ValueChanged="OnSelectedProvinciaChanged"
+                             ValueExpression="(() => CreateUpdateModel.NombreProvincia)">
+                    <option value="">-- selecciona una provincia --</option>
+                    @foreach (var provincia in provinciasList)
+                    {
+                        <option value="@provincia.Nombre">@provincia.Nombre</option>
+                    }
+                </InputSelect>
                 <ValidationMessage For="@(() => CreateUpdateModel.NombreProvincia)" />
             </div>
 
             <div class="form-group mb-3">
-                <label for="NombreCiudad">Ciudad</label>
-                <InputText id="NombreCiudad" class="form-control" @bind-Value="CreateUpdateModel.NombreCiudad" />
+                <label for="nombreCiudad">Ciudad</label>
+                <InputSelect id="nombreCiudad" class="form-select"
+                             @bind-Value="CreateUpdateModel.NombreCiudad">
+                    <option value="">-- selecciona una ciudad --</option>
+                    @foreach (var ciudad in ciudadesList)
+                    {
+                        <option value="@ciudad.Nombre">@ciudad.Nombre</option>
+                    }
+                </InputSelect>
                 <ValidationMessage For="@(() => CreateUpdateModel.NombreCiudad)" />
             </div>
 
-            <div class="form-group mb-3">
-                <label for="FechaPublicacion">Fecha de Publicacion</label>
-                <InputDate id="FechaPublicacion" class="form-control" @bind-Value="CreateUpdateModel.FechaPublicacion" />
-                <ValidationMessage For="@(() => CreateUpdateModel.FechaPublicacion)" />
-            </div>
+            @* La fecha de publicación es inicializada en el Back, así que no es necesario añadir un control de fecha para ello *@
+            @* <div class="form-group mb-3">
+            <label for="FechaPublicacion">Fecha de Publicacion</label>
+            <InputDate id="FechaPublicacion" class="form-control" @bind-Value="CreateUpdateModel.FechaPublicacion" />
+            <ValidationMessage For="@(() => CreateUpdateModel.FechaPublicacion)" />
+            </div> *@
 
             <div class="form-group mb-3">
                 <label for="Descripcion">Descripcion</label>
@@ -100,11 +130,27 @@
     private bool IsEdit => id != 0;
     private string idUsuario = "";
 
+    private IEnumerable<Comunidad> comunidadesList = new List<Comunidad>();
+
+    private IEnumerable<Provincia> provinciasList = new List<Provincia>();
+
+    private IEnumerable<Ciudad> ciudadesList = new List<Ciudad>();
+
     protected override async Task OnInitializedAsync()
     {
+        await GetComunidades();
+
         if (IsEdit)
         {
             CreateUpdateModel = await alojamientoService.GetAlojamiento(id);
+
+            var idComunidad = comunidadesList
+                .FirstOrDefault(c => c.Nombre == CreateUpdateModel.NombreComunidad)!.Id;
+            await GetProvinciasComunidad(idComunidad!);
+
+            var idProvincia = provinciasList
+                .FirstOrDefault(p => p.Nombre == CreateUpdateModel.NombreProvincia)!.Id;
+            await GetCiudadesProvincia(idProvincia!);
 
         }
         else
@@ -133,4 +179,48 @@
     }
 
 
+
+    private async Task OnSelectedComunidadChanged(string nombreComunidad)
+    {
+        CreateUpdateModel.NombreComunidad = nombreComunidad;
+
+        CreateUpdateModel.NombreProvincia = null;
+        CreateUpdateModel.NombreCiudad = null;
+
+        var idComunidad = comunidadesList.FirstOrDefault(c => c.Nombre == nombreComunidad)!.Id;
+
+        await GetProvinciasComunidad(idComunidad!);
+    }
+
+    private async Task OnSelectedProvinciaChanged(string nombreProvincia)
+    {
+        CreateUpdateModel.NombreProvincia = nombreProvincia;
+
+        CreateUpdateModel.NombreCiudad = null;
+
+        var idProvincia = provinciasList.FirstOrDefault(p => p.Nombre == nombreProvincia)!.Id;
+
+        await GetCiudadesProvincia(idProvincia!);
+    }
+
+    private async Task GetComunidades()
+    {
+        var result = await UbicacionesService.GetComunidades();
+
+        comunidadesList = result.Element!;
+    }
+
+    private async Task GetProvinciasComunidad(string idComunidad)
+    {
+        var result = await UbicacionesService.GetProvinciasComunidad(idComunidad);
+
+        provinciasList = result.Element!;
+    }
+
+    private async Task GetCiudadesProvincia(string idProvincia)
+    {
+        var result = await UbicacionesService.GetCiudadesProvincia(idProvincia);
+
+        ciudadesList = result.Element!;
+    }
 }

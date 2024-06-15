@@ -9,14 +9,17 @@ namespace Client.Services
     public class UsuariosService : IUsuariosService
     {
         private readonly HttpClient _httpClient;
-        private readonly ILocalStorageService _localStorage;
+        private readonly ILocalStorageService _localStorageService;
+        private readonly IConfiguration _configuration;
 
-        private readonly string apiUri = "https://localhost:7123/api/";
+        private readonly string apiUri;
 
-        public UsuariosService(HttpClient httpClient, ILocalStorageService localStorage)
+        public UsuariosService(HttpClient httpClient, ILocalStorageService localStorageService, IConfiguration configuration)
         {
             _httpClient = httpClient;
-            _localStorage = localStorage;
+            _localStorageService = localStorageService;
+            _configuration = configuration;
+            apiUri = _configuration.GetSection("ApiSettings")["BaseUri"]!;
         }
 
         public async Task<ResponseDto<UserForUpdateDto>> GetUsuario(string idUsuario)

@@ -14,14 +14,17 @@ namespace Client.Services
         private readonly HttpClient _httpClient;
         private readonly AuthenticationStateProvider _stateProvider;
         private readonly ILocalStorageService _localStorage;
+        private readonly IConfiguration _configuration;
 
-        private readonly string apiUri = "https://localhost:7123/api/";
+        private readonly string apiUri;
 
-        public AuthenticationService(HttpClient httpClient, AuthenticationStateProvider stateProvider, ILocalStorageService localStorage)
+        public AuthenticationService(HttpClient httpClient, AuthenticationStateProvider stateProvider, ILocalStorageService localStorage, IConfiguration configuration)
         {
             _httpClient = httpClient;
             _stateProvider = stateProvider;
             _localStorage = localStorage;
+            _configuration = configuration;
+            apiUri = _configuration.GetSection("ApiSettings")["BaseUri"]!;
         }
 
         public async Task<RegistrationResponseDto> Register(UserForRegistrationDto registerModel)

@@ -8,12 +8,15 @@ namespace Client.Services
     public class AlojamientoService : IAlojamientoService
     {
         private readonly HttpClient _httpClient;
+        private readonly IConfiguration _configuration;
 
-        private readonly string apiUri = "https://localhost:7123/api/";
+        private readonly string apiUri;
 
-        public AlojamientoService(HttpClient httpClient)
+        public AlojamientoService(HttpClient httpClient, IConfiguration configuration)
         {
             _httpClient = httpClient;
+            _configuration = configuration;
+            apiUri = _configuration.GetSection("ApiSettings")["BaseUri"]!;
         }
 
         public async Task<IEnumerable<AlojamientoDto>> GetAllAlojamientos()

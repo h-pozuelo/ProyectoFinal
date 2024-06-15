@@ -8,12 +8,15 @@ namespace Client.Services
     public class AlquilerService : IAlquilerService
     {
         private readonly HttpClient _httpClient;
+        private readonly IConfiguration _configuration;
 
-        private readonly string apiUri = "https://localhost:7123/api/";
+        private readonly string apiUri;
 
-        public AlquilerService(HttpClient httpClient)
+        public AlquilerService(HttpClient httpClient, IConfiguration configuration)
         {
             _httpClient = httpClient;
+            _configuration = configuration;
+            apiUri = _configuration.GetSection("ApiSettings")["BaseUri"]!;
         }
 
         public async Task<IEnumerable<AlquilerDto>> GetAllAlquileres()
