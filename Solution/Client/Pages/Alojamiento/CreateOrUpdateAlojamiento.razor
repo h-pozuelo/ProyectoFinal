@@ -7,18 +7,17 @@
 @inject NavigationManager navigationManager
 @inject AuthenticationStateProvider StateProvider
 
-<h3>@(IsEdit ? "Actualizar Alojamiento" : "Crear Alojamiento")</h3>
 
 
 <div class="card">
     <div class="card-body">
-        <h3 class="card-title">Crear un alojamiento</h3>
+<h3>@(IsEdit ? "Actualizar Alojamiento" : "Crear Alojamiento")</h3>
         <EditForm Model="CreateUpdateModel" OnValidSubmit="CreateOrUpdate">
             <DataAnnotationsValidator />
             <ValidationSummary />
 
             <InputNumber id="Id" @bind-Value="CreateUpdateModel.Id" hidden />
-            <InputNumber id="IdPropietario" @bind-Value="CreateUpdateModel.IdPropietario" />
+            <InputText id="IdPropietario" @bind-Value="CreateUpdateModel.IdPropietario" readonly />
 
             <div class="form-group mb-3">
                 <label for="Titulo">Titulo</label>
