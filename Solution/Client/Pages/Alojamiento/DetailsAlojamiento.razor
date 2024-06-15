@@ -1,5 +1,49 @@
-﻿<h3>DetailsAlojamiento</h3>
+﻿@page "/detailsalojamiento/{id:int}"
+@using Shared.DataTransferObjects
+@using Shared.Services
+@inject IAlojamientoService alojamientoService
+@inject NavigationManager navigationManager
+
+<h3>Detalles del Alojamiento</h3>
+
+@if (alojamiento == null)
+{
+    <p>Cargando detalles del alojamiento...</p>
+}
+else
+{
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>@alojamiento.Titulo</h2>
+                <img src="https://img.freepik.com/vector-gratis/dibujo-casa-aislada_23-2147502091.jpg?size=626&ext=jpg"
+                     alt="Imagen del alojamiento" class="img-fluid rounded mb-3" />
+                <p><strong>Dirección:</strong> @alojamiento.Direccion</p>
+                <p><strong>Numero de Habitaciones:</strong> @alojamiento.NumeroHabitaciones</p>
+                <p><strong>Capacidad de Invitados:</strong> @alojamiento.CapacidadInvitados</p>
+                <p><strong>Precio por Noche:</strong> @alojamiento.PrecioNoche €</p>
+                <p><strong>Comunidad Autónoma:</strong> @alojamiento.NombreComunidad</p>
+                <p><strong>Provincia:</strong> @alojamiento.NombreProvincia</p>
+                <p><strong>Ciudad:</strong> @alojamiento.NombreCiudad</p>
+                <p><strong>Fecha de Publicación:</strong> @alojamiento.FechaPublicacion.ToShortDateString()</p>
+                <p><strong>Descripción:</strong> @alojamiento.Descripcion</p>
+                <button @onclick="GoBack" class="btn btn-secondary">Volver</button>
+            </div>
+        </div>
+    </div>
+}
 
 @code {
+    [Parameter] public int id { get; set; }
+    private AlojamientoDto alojamiento;
 
+    protected override async Task OnInitializedAsync()
+    {
+        alojamiento = await alojamientoService.GetAlojamiento(id);
+    }
+
+    private void GoBack()
+    {
+        navigationManager.NavigateTo("/listalojamientos");
+    }
 }
