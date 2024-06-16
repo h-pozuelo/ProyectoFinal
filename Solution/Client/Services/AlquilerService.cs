@@ -21,7 +21,7 @@ namespace Client.Services
 
         public async Task<IEnumerable<AlquilerDto>> GetAllAlquileres()
         {
-            var response = await _httpClient.GetAsync($"{apiUri}Alquileres/GetAllAlquileres");
+            var response = await _httpClient.GetAsync($"{apiUri}Alquiler/GetAllAlquileres");
 
             var result = await Deserialize<List<AlquilerDto>>.DeserializeJson(response);
 
@@ -30,7 +30,7 @@ namespace Client.Services
 
         public async Task<AlquilerDto> GetAlquiler(int id)
         {
-            var response = await _httpClient.GetAsync($"{apiUri}Alquileres/GetAlquiler/{id}");
+            var response = await _httpClient.GetAsync($"{apiUri}Alquiler/GetAlquiler/{id}");
 
             var result = await Deserialize<AlquilerDto>.DeserializeJson(response);
 
@@ -39,7 +39,7 @@ namespace Client.Services
 
         public async Task<AlquilerDto> CreateAlquiler(AlquilerDto alquiler)
         {
-            var response = await _httpClient.PostAsJsonAsync($"{apiUri}Alquileres/CreateAlquiler", alquiler);
+            var response = await _httpClient.PostAsJsonAsync($"{apiUri}Alquiler/CreateAlquiler", alquiler);
 
             var result = await Deserialize<AlquilerDto>.DeserializeJson(response);
 
@@ -48,7 +48,7 @@ namespace Client.Services
 
         public async Task<AlquilerDto> UpdateAlquiler(AlquilerDto alquiler)
         {
-            var response = await _httpClient.PutAsJsonAsync($"{apiUri}Alquileres/UpdateAlquiler", alquiler);
+            var response = await _httpClient.PutAsJsonAsync($"{apiUri}Alquiler/UpdateAlquiler", alquiler);
 
             var result = await Deserialize<AlquilerDto>.DeserializeJson(response);
 
@@ -57,12 +57,12 @@ namespace Client.Services
 
         public async Task DeleteAlquiler(int id)
         {
-            await _httpClient.DeleteAsync($"{apiUri}Alquileres/DeleteAlquiler/{id}");
+            await _httpClient.DeleteAsync($"{apiUri}Alquiler/DeleteAlquiler/{id}");
         }
 
         public async Task<IEnumerable<AlquilerDto>> GetAlquileresByAlojamiento(int id)
         {
-            var response = await _httpClient.GetAsync($"{apiUri}Alquileres/GetAlquileresByAlojamiento/{id}");
+            var response = await _httpClient.GetAsync($"{apiUri}Alquiler/GetAlquileresByAlojamiento/{id}");
 
             var result = await Deserialize<List<AlquilerDto>>.DeserializeJson(response);
 
@@ -71,7 +71,7 @@ namespace Client.Services
 
         public async Task<IEnumerable<AlquilerDto>> GetAlquileresByUser(string id)
         {
-            var response = await _httpClient.GetAsync($"{apiUri}Alquileres/GetAlquileresByUser/{id}");
+            var response = await _httpClient.GetAsync($"{apiUri}Alquiler/GetAlquileresByUser/{id}");
 
             var result = await Deserialize<List<AlquilerDto>>.DeserializeJson(response);
 

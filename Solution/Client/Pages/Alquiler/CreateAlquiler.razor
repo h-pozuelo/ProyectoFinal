@@ -13,8 +13,8 @@
     <DataAnnotationsValidator />
     <ValidationSummary />
 
-    <input type="number" Value="@id" class="form-control" readonly />
-    <input type="text" Value="@idUsuario" class="form-control" readonly />
+    @* <input type="number" Value="@id" class="form-control" readonly />
+    <input type="text" Value="@idUsuario" class="form-control" readonly /> *@
 
     <InputNumber @bind-Value="@NewAlquilerModel.IdAlojamiento" class="form-control" readonly />
     <InputText @bind-Value="@NewAlquilerModel.IdInquilino" class="form-control" readonly />
@@ -42,7 +42,7 @@
     </div>
 
 
-    <button @onclick="CalculatePrice" class="btn btn-secondary">Calcular Precio</button>
+    <button type="button" @onclick="CalculatePrice" class="btn btn-secondary">Calcular Precio</button>
 
     <button type="submit" class="btn btn-primary">Guardar Alquiler</button>
 
