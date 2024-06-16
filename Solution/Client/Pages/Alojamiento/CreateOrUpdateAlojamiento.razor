@@ -8,6 +8,7 @@
 @inject NavigationManager navigationManager
 @inject AuthenticationStateProvider StateProvider
 @inject IUbicacionesService UbicacionesService
+@inject ImagesService ImagesService
 
 
 
@@ -20,6 +21,19 @@
 
             <InputNumber id="Id" @bind-Value="CreateUpdateModel.Id" hidden />
             <InputText id="IdPropietario" @bind-Value="CreateUpdateModel.IdPropietario" readonly />
+
+            @if (IsEdit && !(imagenesList == null || imagenesList.Count() == 0))
+            {
+                @foreach (var imagen in imagenesList)
+                {
+                    <img src="@imagen" />
+                }
+            }
+
+            <div class="form-group mb-3">
+                <label for="imagenesUpload">Fotos</label>
+                <InputFile id="imagenesUpload" class="form-control" OnChange="OnImagenesSelected" multiple />
+            </div>
 
             <div class="form-group mb-3">
                 <label for="Titulo">Titulo</label>
@@ -136,6 +150,8 @@
 
     private IEnumerable<Ciudad> ciudadesList = new List<Ciudad>();
 
+    private IEnumerable<string>? imagenesList;
+
     protected override async Task OnInitializedAsync()
     {
         await GetComunidades();
@@ -152,6 +168,8 @@
                 .FirstOrDefault(p => p.Nombre == CreateUpdateModel.NombreProvincia)!.Id;
             await GetCiudadesProvincia(idProvincia!);
 
+            imagenesList = (await ImagesService.GetImages(containerName: "alojamientos", id: CreateUpdateModel.Id.ToString())).Element;
+
         }
         else
         {
@@ -163,15 +181,28 @@
 
     private async Task CreateOrUpdate()
     {
+        AlojamientoDto? result;
+
         if (IsEdit)
         {
             // Llamar al servicio para actualizar el alojamiento
-            await alojamientoService.UpdateAlojamiento(CreateUpdateModel);
+            result = await alojamientoService.UpdateAlojamiento(CreateUpdateModel);
         }
         else
         {
             // Llamar al servicio para crear un nuevo alojamiento
-            await alojamientoService.CreateAlojamiento(CreateUpdateModel);
+            result = await alojamientoService.CreateAlojamiento(CreateUpdateModel);
+        }
+
+        if (imagenes.Any())
+        {
+            foreach (var imagen in imagenes)
+            {
+                await ImagesService.UploadImage(
+                    image: imagen,
+                    containerName: "alojamientos",
+                    id: result.Id.ToString());
+            }
         }
 
         // Redirigir a otra página o mostrar un mensaje de éxito
@@ -179,6 +210,12 @@
     }
 
 
+    private List<IBrowserFile> imagenes = new List<IBrowserFile>();
+
+    private void OnImagenesSelected(InputFileChangeEventArgs e)
+    {
+        imagenes = e.GetMultipleFiles().ToList();
+    }
 
     private async Task OnSelectedComunidadChanged(string nombreComunidad)
     {

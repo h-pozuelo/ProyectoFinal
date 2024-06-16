@@ -21,6 +21,8 @@ builder.Services.AddScoped<IAlquilerService, AlquilerService>();
 
 builder.Services.AddScoped<IUbicacionesService, UbicacionesService>();
 
+builder.Services.AddScoped<ImagesService>();
+
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
 await builder.Build().RunAsync();
