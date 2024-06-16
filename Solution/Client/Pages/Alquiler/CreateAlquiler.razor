@@ -1,32 +1,108 @@
 ﻿@page "/createalquiler/{id:int}"
 @using Shared.Services
 @using Microsoft.AspNetCore.Components.Authorization
+@using Shared.DataTransferObjects
 @inject NavigationManager navigationManager
 @inject AuthenticationStateProvider StateProvider
+@inject IAlquilerService alquilerService
+@inject IAlojamientoService alojamientoService
 
 <h3>Crear Alquiler</h3>
 
-<InputNumber @bind-Value="@id" class="form-control" readonly />
-<InputText @bind-Value="@idUsuario" class="form-control" readonly />
+<EditForm Model="NewAlquilerModel" OnValidSubmit="CreateNewAlquiler">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <input type="number" Value="@id" class="form-control" readonly />
+    <input type="text" Value="@idUsuario" class="form-control" readonly />
+
+    <InputNumber @bind-Value="@NewAlquilerModel.IdAlojamiento" class="form-control" readonly />
+    <InputText @bind-Value="@NewAlquilerModel.IdInquilino" class="form-control" readonly />
+
+    <div class="form-group">
+        <label for="fechaInicio">Fecha de Inicio</label>
+        <InputDate @bind-Value="@NewAlquilerModel.FechaInicio" class="form-control" id="fechaInicio" />
+        <ValidationMessage For="@(() => NewAlquilerModel.FechaInicio)" />
+    </div>
+
+    <div class="form-group">
+        <label for="fechaFin">Fecha de Fin</label>
+        <InputDate @bind-Value="@NewAlquilerModel.FechaFin" class="form-control" id="fechaFin" />
+        <ValidationMessage For="@(() => NewAlquilerModel.FechaFin)" />
+    </div>
+
+    <div class="form-group">
+        <label for="cantidadDias">Cantidad de Días</label>
+        <input type="number" Value="@cantidadDias" class="form-control" id="cantidadDias" readonly />
+    </div>
+
+    <div class="form-group">
+        <label for="precioTotal">Precio Total</label>
+        <InputNumber @bind-Value="@NewAlquilerModel.PrecioTotal" class="form-control" id="precioTotal" readonly />
+    </div>
 
 
+    <button @onclick="CalculatePrice" class="btn btn-secondary">Calcular Precio</button>
 
+    <button type="submit" class="btn btn-primary">Guardar Alquiler</button>
 
-
-<button @onclick="SaveAlquiler" class="btn btn-primary">Guardar Alquiler</button>
+</EditForm>
 
 @code {
     [Parameter] public int id { get; set; }
 
     private string idUsuario = "";
 
+    private AlquilerDto NewAlquilerModel = new AlquilerDto();
+    //private AlojamientoDto alojamiento;
+    private int cantidadDias = 0;
+    private double precioNoche = 0;
+
     protected override async Task OnInitializedAsync()
     {
         idUsuario = (await StateProvider.GetAuthenticationStateAsync()).User.FindFirst("Id")!.Value;
+        NewAlquilerModel.IdAlojamiento = id;
+        NewAlquilerModel.IdInquilino = idUsuario;
+
+        var alojamiento = await alojamientoService.GetAlojamiento(id);
+        precioNoche = alojamiento.PrecioNoche;
+
+        NewAlquilerModel.FechaInicio = DateTime.Today;
+        NewAlquilerModel.FechaFin = DateTime.Today;
     }
 
-    private void SaveAlquiler()
+
+    private void CalculatePrice()
     {
-        navigationManager.NavigateTo("/listalojamientos");
+        if (NewAlquilerModel.FechaInicio < DateTime.Today || NewAlquilerModel.FechaFin < DateTime.Today)
+        {
+            NewAlquilerModel.PrecioTotal = 0;
+            cantidadDias = 0;
+            return;
+        }
+
+        if (NewAlquilerModel.FechaInicio != default && NewAlquilerModel.FechaFin != default && NewAlquilerModel.FechaInicio <= NewAlquilerModel.FechaFin)
+        {
+            cantidadDias = (NewAlquilerModel.FechaFin - NewAlquilerModel.FechaInicio).Days;
+            NewAlquilerModel.PrecioTotal = cantidadDias * precioNoche;
+        }
+        else
+        {
+            NewAlquilerModel.PrecioTotal = 0;
+            cantidadDias = 0;
+        }
+
+    }
+
+
+    private async Task CreateNewAlquiler()
+    {
+        var createdAlquiler = await alquilerService.CreateAlquiler(NewAlquilerModel);
+
+        if (createdAlquiler != null)
+        {
+            navigationManager.NavigateTo("/listalojamientos");
+        }
+
     }
 }
