@@ -168,7 +168,7 @@
                 .FirstOrDefault(p => p.Nombre == CreateUpdateModel.NombreProvincia)!.Id;
             await GetCiudadesProvincia(idProvincia!);
 
-            imagenesList = (await ImagesService.GetImages(containerName: "alojamientos", id: CreateUpdateModel.Id.ToString())).Element;
+            imagenesList = (await ImagesService.GetImages(containerName: "containerfinalproject", id: CreateUpdateModel.Id.ToString())).Element;
 
         }
         else
@@ -200,7 +200,7 @@
             {
                 await ImagesService.UploadImage(
                     image: imagen,
-                    containerName: "alojamientos",
+                    containerName: "containerfinalproject",
                     id: result.Id.ToString());
             }
         }
