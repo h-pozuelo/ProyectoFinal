@@ -5,7 +5,6 @@
 @inject NavigationManager navigationManager
 @inject AuthenticationStateProvider StateProvider
 @inject IAlquilerService alquilerService
-@inject IUsuariosService usuariosService
 
 <h3>Alquileres</h3>
 
@@ -25,12 +24,7 @@
         <tbody>
             @foreach (var alquiler in Alquileres)
             {
-                <tr>
-                    <td>@alquiler.IdInquilino</td>
-                    <td>@alquiler.FechaInicio.ToShortDateString()</td>
-                    <td>@alquiler.FechaFin.ToShortDateString()</td>
-                    <td>@alquiler.PrecioTotal €</td>
-                </tr>
+                <Fila alquiler="alquiler" />
             }
             <p style="background-color:khaki">Ganancia Total de este alojamiento: @TotalPrecioAlquileres €</p>
         </tbody>
@@ -60,6 +54,5 @@ else
         TotalPrecioAlquileres = Alquileres.Sum(a => a.PrecioTotal);
 
     }
-
 
 }

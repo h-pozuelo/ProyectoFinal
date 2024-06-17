@@ -1,0 +1,20 @@
+﻿@using Shared.DataTransferObjects
+@using Shared.Services
+@inject IUsuariosService UsuariosService
+
+<tr>
+    <td>@nombreInquilino</td>
+    <td>@alquiler.FechaInicio.ToShortDateString()</td>
+    <td>@alquiler.FechaFin.ToShortDateString()</td>
+    <td>@alquiler.PrecioTotal €</td>
+</tr>
+
+@code {
+    [Parameter] public AlquilerDto alquiler { get; set; } = new AlquilerDto();
+    private string nombreInquilino = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        nombreInquilino = (await UsuariosService.GetNombreUsuario(alquiler.IdInquilino)).Element!;
+    }
+}
