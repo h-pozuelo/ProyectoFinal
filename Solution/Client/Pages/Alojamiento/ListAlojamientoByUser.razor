@@ -27,10 +27,14 @@ else
     <div class="container mt-4">
         @foreach (var alojamiento in alojamientos)
         {
-            <NavLink href="@($"/createorupdatealojamiento/{alojamiento.Id}")"
-                     style="color: inherit; text-decoration: none;">
-                <Card alojamiento="alojamiento" idUsuario="idUsuario" />
-            </NavLink>
+            <div class="border-2">
+                <NavLink href="@($"/createorupdatealojamiento/{alojamiento.Id}")"
+                         style="color: inherit; text-decoration: none;">
+                    <Card alojamiento="alojamiento" idUsuario="idUsuario" />
+                </NavLink>
+                <NavLink href="@($"/alquilerByAlojamiento/{alojamiento.Id}")"
+                         class="btn btn-primary">Ver Alquileres</NavLink>
+            </div>
         }
     </div>
 }

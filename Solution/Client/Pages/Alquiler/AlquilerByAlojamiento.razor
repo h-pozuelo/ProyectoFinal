@@ -1,0 +1,65 @@
+﻿@page "/alquilerByAlojamiento/{id:int}"
+@using Shared.Services
+@using Microsoft.AspNetCore.Components.Authorization
+@using Shared.DataTransferObjects
+@inject NavigationManager navigationManager
+@inject AuthenticationStateProvider StateProvider
+@inject IAlquilerService alquilerService
+@inject IUsuariosService usuariosService
+
+<h3>Alquileres</h3>
+
+
+
+@if (Alquileres != null)
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Inquilino</th>
+                <th>Fecha de Inicio</th>
+                <th>Fecha de Fin</th>
+                <th>Precio Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var alquiler in Alquileres)
+            {
+                <tr>
+                    <td>@alquiler.IdInquilino</td>
+                    <td>@alquiler.FechaInicio.ToShortDateString()</td>
+                    <td>@alquiler.FechaFin.ToShortDateString()</td>
+                    <td>@alquiler.PrecioTotal €</td>
+                </tr>
+            }
+            <p style="background-color:khaki">Ganancia Total de este alojamiento: @TotalPrecioAlquileres €</p>
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No hay alquileres para este alojamiento</p>
+}
+
+
+
+@code {
+    [Parameter] public int id { get; set; }
+    private string idUsuario = "";
+    private IEnumerable<AlquilerDto> Alquileres = new List<AlquilerDto>();
+    private double TotalPrecioAlquileres = 0;
+
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        idUsuario = (await StateProvider.GetAuthenticationStateAsync()).User.FindFirst("Id")!.Value;
+
+        Alquileres = await alquilerService.GetAlquileresByAlojamiento(id);
+
+        TotalPrecioAlquileres = Alquileres.Sum(a => a.PrecioTotal);
+
+    }
+
+
+}
