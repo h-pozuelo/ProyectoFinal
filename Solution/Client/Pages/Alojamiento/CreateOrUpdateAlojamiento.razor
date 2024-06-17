@@ -24,10 +24,7 @@
 
             @if (IsEdit && !(imagenesList == null || imagenesList.Count() == 0))
             {
-                @foreach (var imagen in imagenesList)
-                {
-                    <img src="@imagen" />
-                }
+                <Carousel imagenes="imagenesList" />
             }
 
             <div class="form-group mb-3">

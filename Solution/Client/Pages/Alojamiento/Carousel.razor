@@ -1,0 +1,38 @@
+﻿<div id="carouselExampleAutoplaying" class="carousel carousel-dark slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        @for (int i = 0; i < imagenes.Count(); i++)
+        {
+            @if (i == 0)
+            {
+                <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="@i" class="active" aria-current="true" aria-label="Slide @i"></button>
+            }
+            else
+            {
+                <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="@i" aria-label="Slide @i"></button>
+            }
+        }
+    </div>
+    <div class="carousel-inner">
+        @foreach (var imagen in imagenes)
+        {
+            <div class="carousel-item @(index == 0 ? "active" : "")">
+                <img src="@imagen" class="d-block w-100" alt="@imagen">
+            </div>
+            @(index++)
+        }
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+@code {
+    [Parameter]
+    public IEnumerable<string> imagenes { get; set; } = new List<string>();
+    private int index = 0;
+}
