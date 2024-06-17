@@ -1,8 +1,10 @@
 ﻿@page "/detailsalojamiento/{id:int}"
 @using Shared.DataTransferObjects
 @using Shared.Services
+@using Client.Services
 @inject IAlojamientoService alojamientoService
 @inject NavigationManager navigationManager
+@inject ImagesService ImagesService
 
 <h3>Detalles del Alojamiento</h3>
 
@@ -16,7 +18,7 @@ else
         <div class="row">
             <div class="col-md-12">
                 <h2>@alojamiento.Titulo</h2>
-                <img src="https://img.freepik.com/vector-gratis/dibujo-casa-aislada_23-2147502091.jpg?size=626&ext=jpg"
+                <img src="@(image == "" ? "https://img.freepik.com/vector-gratis/dibujo-casa-aislada_23-2147502091.jpg?size=626&ext=jpg" : image)"
                      alt="Imagen del alojamiento" class="img-fluid rounded mb-3" />
                 <p><strong>Dirección:</strong> @alojamiento.Direccion</p>
                 <p><strong>Numero de Habitaciones:</strong> @alojamiento.NumeroHabitaciones</p>
@@ -37,10 +39,18 @@ else
 @code {
     [Parameter] public int id { get; set; }
     private AlojamientoDto alojamiento;
+    private string image = "";
 
     protected override async Task OnInitializedAsync()
     {
         alojamiento = await alojamientoService.GetAlojamiento(id);
+
+        var result = await ImagesService.GetImages("alojamientos", alojamiento.Id.ToString());
+
+        if (result.IsSuccessful && !(result.Element == null || result.Element.Count() == 0))
+        {
+            image = result.Element.First();
+        }
     }
 
     private void GoBack()
