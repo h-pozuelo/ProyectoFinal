@@ -47,5 +47,13 @@ namespace Server.Controllers
 
             return StatusCode(((int)result.StatusCode), result);
         }
+
+        [HttpGet("GetNombreUsuario/{idUsuario}")]
+        public async Task<IActionResult> GetNombreUsuario(string idUsuario)
+        {
+            var result = await _usuariosService.GetNombreUsuario(idUsuario);
+
+            return StatusCode(((int)result.StatusCode), result);
+        }
     }
 }

@@ -161,5 +161,29 @@ namespace Server.Services
 
             return response;
         }
+
+        public async Task<ResponseDto<string>> GetNombreUsuario(string idUsuario)
+        {
+            ResponseDto<UserForUpdateDto> response = await GetUsuario(idUsuario);
+
+            if (!response.IsSuccessful) return new ResponseDto<string>
+            {
+                Error = response.Error,
+                StatusCode = response.StatusCode,
+            };
+
+            if (string.IsNullOrEmpty(response.Element!.FullName)) return new ResponseDto<string>
+            {
+                Error = "El nombre completo es nulo o está vacío.",
+                StatusCode = HttpStatusCode.NotFound,
+            };
+
+            return new ResponseDto<string>
+            {
+                IsSuccessful = true,
+                Element = response.Element!.FullName,
+                StatusCode = HttpStatusCode.OK,
+            };
+        }
     }
 }

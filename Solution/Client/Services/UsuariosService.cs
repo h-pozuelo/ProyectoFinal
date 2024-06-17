@@ -83,5 +83,21 @@ namespace Client.Services
 
             return result!;
         }
+
+        public async Task<ResponseDto<string>> GetNombreUsuario(string idUsuario)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, $"{apiUri}Usuarios/GetNombreUsuario/{idUsuario}");
+
+            var response = await _httpClient.SendAsync(request);
+
+            var result = JsonSerializer.Deserialize<ResponseDto<string>>(
+                await response.Content.ReadAsStringAsync(),
+                new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+
+            return result!;
+        }
     }
 }
