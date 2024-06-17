@@ -3,6 +3,8 @@
 @using Client.Services
 @inject IAuthenticationService AuthenticationService
 @inject NavigationManager NavigationManager
+@using Microsoft.AspNetCore.Authorization
+@attribute [AllowAnonymous]
 
 @if (showErrors)
 {
@@ -42,13 +44,16 @@
     private bool showErrors;
     private string error = "";
 
+    [Parameter]
+    public string returnUrl { get; set; } = "/";
+
     private async Task HandleLogin()
     {
         showErrors = false;
 
         var result = await AuthenticationService.Login(loginModel);
 
-        if (result.IsAuthenticationSuccessful) NavigationManager.NavigateTo("/");
+        if (result.IsAuthenticationSuccessful) NavigationManager.NavigateTo(returnUrl);
 
         error = result.ErrorMessage!;
         showErrors = true;

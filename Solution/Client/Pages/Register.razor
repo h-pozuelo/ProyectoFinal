@@ -3,6 +3,8 @@
 @using Client.Services
 @inject IAuthenticationService AuthenticationService
 @inject NavigationManager NavigationManager
+@using Microsoft.AspNetCore.Authorization
+@attribute [AllowAnonymous]
 
 @if (showErrors)
 {
