@@ -1,0 +1,69 @@
+﻿@page "/listalojamientosbyuser"
+@using Shared.DataTransferObjects
+@using Shared.Services
+@using Microsoft.AspNetCore.Components.Authorization
+@inject IAlojamientoService alojamientoService
+@inject NavigationManager navigationManager
+@inject AuthenticationStateProvider StateProvider
+@inject IAlquilerService alquilerService
+
+
+
+<h3>ListAlojamientoByUser</h3>
+
+@if (alojamientos == null)
+{
+    <p>Cargando alojamientos...</p>
+}
+else if (!alojamientos.Any())
+{
+    <p>No hay alojamientos disponibles.</p>
+}
+else
+{
+    <div class="container mt-4">
+        @foreach (var alojamiento in alojamientos)
+        {
+            <NavLink href="@($"/CreateOrUpdateAlojamiento/{alojamiento.Id}")"
+                     style="color: inherit; text-decoration: none;">
+                <div class="row mb-4 border rounded p-3">
+                    <div class="col-md-4">
+                        <img src="https://img.freepik.com/vector-gratis/dibujo-casa-aislada_23-2147502091.jpg?size=626&ext=jpg"
+                             alt="Imagen del alojamiento" class="img-fluid rounded" />
+                    </div>
+                    <div class="col-md-8">
+                        <h4>@alojamiento.Titulo</h4>
+                        <hr />
+                        <p><strong>Fecha de Publicación:</strong> @alojamiento.FechaPublicacion.ToShortDateString()</p>
+                        <p><strong>Numero de Habitaciones:</strong> @alojamiento.NumeroHabitaciones</p>
+                        <p><strong>Capacidad de Invitados:</strong> @alojamiento.CapacidadInvitados</p>
+                        <p><strong>Precio por Noche:</strong> @alojamiento.PrecioNoche €</p>
+                        <p><strong>Comunidad Autónoma:</strong> @alojamiento.NombreComunidad</p>
+                        <p><strong>Descripción:</strong> @alojamiento.Descripcion</p>
+                    </div>
+                </div>
+            </NavLink>
+        }
+    </div>
+}
+
+@code {
+    private IEnumerable<AlojamientoDto> alojamientos;
+    private string idUsuario = "";
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        idUsuario = (await StateProvider.GetAuthenticationStateAsync()).User.FindFirst("Id")!.Value;
+
+        alojamientos = await alojamientoService.GetAlojamientosByUser(idUsuario);
+    }
+
+    // private async Task<IEnumerable<AlquilerDto>> countAlquileres(int id)
+    // {
+    //     var alquilerAlojamiento = await alquilerService.GetAlquileresByAlojamiento(id);
+    //     return alquilerAlojamiento.ToList();
+    // }
+
+
+}

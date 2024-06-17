@@ -36,6 +36,12 @@ namespace Server.Controllers
             return Ok(result);
         }
 
+        [HttpGet("GetAlojamientosByUser/{id}")]
+        public async Task<IActionResult> GetAlojamientosByUser(string id)
+        {
+            var result = await _alojamientoService.GetAlojamientosByUser(id);
+            return Ok(result);
+        }
 
         [HttpPost("CreateAlojamiento")]
         public async Task<IActionResult> CreateAlojamiento([FromBody] AlojamientoDto alojamiento)

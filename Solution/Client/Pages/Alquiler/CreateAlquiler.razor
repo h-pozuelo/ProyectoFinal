@@ -13,22 +13,21 @@
     <DataAnnotationsValidator />
     <ValidationSummary />
 
-    @* <input type="number" Value="@id" class="form-control" readonly />
-    <input type="text" Value="@idUsuario" class="form-control" readonly /> *@
+    <InputNumber @bind-Value="@NewAlquilerModel.IdAlojamiento" class="form-control" readonly hidden />
+    <InputText @bind-Value="@NewAlquilerModel.IdInquilino" class="form-control" readonly hidden />
 
-    <InputNumber @bind-Value="@NewAlquilerModel.IdAlojamiento" class="form-control" readonly />
-    <InputText @bind-Value="@NewAlquilerModel.IdInquilino" class="form-control" readonly />
+    <div class="form-group row">
+        <div class="col">
+            <label for="fechaInicio">Fecha de Inicio</label>
+            <InputDate @bind-Value="NewAlquilerModel.FechaInicio" class="form-control" id="fechaInicio" @oninput="OnFechaInicioChanged" />
+            <ValidationMessage For="@(() => NewAlquilerModel.FechaInicio)" />
+        </div>
 
-    <div class="form-group">
-        <label for="fechaInicio">Fecha de Inicio</label>
-        <InputDate @bind-Value="@NewAlquilerModel.FechaInicio" class="form-control" id="fechaInicio" />
-        <ValidationMessage For="@(() => NewAlquilerModel.FechaInicio)" />
-    </div>
-
-    <div class="form-group">
-        <label for="fechaFin">Fecha de Fin</label>
-        <InputDate @bind-Value="@NewAlquilerModel.FechaFin" class="form-control" id="fechaFin" />
-        <ValidationMessage For="@(() => NewAlquilerModel.FechaFin)" />
+        <div class="col">
+            <label for="fechaFin">Fecha de Fin</label>
+            <InputDate @bind-Value="NewAlquilerModel.FechaFin" class="form-control" id="fechaFin" @oninput="OnFechaFinChanged" />
+            <ValidationMessage For="@(() => NewAlquilerModel.FechaFin)" />
+        </div>
     </div>
 
     <div class="form-group">
@@ -38,13 +37,14 @@
 
     <div class="form-group">
         <label for="precioTotal">Precio Total</label>
-        <InputNumber @bind-Value="@NewAlquilerModel.PrecioTotal" class="form-control" id="precioTotal" readonly />
+        <InputNumber @bind-Value="NewAlquilerModel.PrecioTotal" class="form-control" id="precioTotal" readonly />
     </div>
 
+    <div class="form-group">
+        <button @onclick="GoBack" class="btn btn-secondary">Volver</button>
+        <button type="submit" class="btn btn-primary">Guardar Alquiler</button>
+    </div>
 
-    <button type="button" @onclick="CalculatePrice" class="btn btn-secondary">Calcular Precio</button>
-
-    <button type="submit" class="btn btn-primary">Guardar Alquiler</button>
 
 </EditForm>
 
@@ -54,13 +54,13 @@
     private string idUsuario = "";
 
     private AlquilerDto NewAlquilerModel = new AlquilerDto();
-    //private AlojamientoDto alojamiento;
     private int cantidadDias = 0;
     private double precioNoche = 0;
 
     protected override async Task OnInitializedAsync()
     {
-        idUsuario = (await StateProvider.GetAuthenticationStateAsync()).User.FindFirst("Id")!.Value;
+        var authState = await StateProvider.GetAuthenticationStateAsync();
+        idUsuario = authState.User.FindFirst("Id")!.Value;
         NewAlquilerModel.IdAlojamiento = id;
         NewAlquilerModel.IdInquilino = idUsuario;
 
@@ -68,9 +68,21 @@
         precioNoche = alojamiento.PrecioNoche;
 
         NewAlquilerModel.FechaInicio = DateTime.Today;
-        NewAlquilerModel.FechaFin = DateTime.Today;
+        NewAlquilerModel.FechaFin = DateTime.Today.AddDays(1);
+        CalculatePrice();
     }
 
+    private void OnFechaInicioChanged(ChangeEventArgs e)
+    {
+        NewAlquilerModel.FechaInicio = DateTime.Parse(e.Value.ToString());
+        CalculatePrice();
+    }
+
+    private void OnFechaFinChanged(ChangeEventArgs e)
+    {
+        NewAlquilerModel.FechaFin = DateTime.Parse(e.Value.ToString());
+        CalculatePrice();
+    }
 
     private void CalculatePrice()
     {
@@ -91,9 +103,7 @@
             NewAlquilerModel.PrecioTotal = 0;
             cantidadDias = 0;
         }
-
     }
-
 
     private async Task CreateNewAlquiler()
     {
@@ -103,6 +113,11 @@
         {
             navigationManager.NavigateTo("/listalojamientos");
         }
-
     }
+
+    private void GoBack()
+    {
+        navigationManager.NavigateTo("/listalojamientos");
+    }
+
 }
