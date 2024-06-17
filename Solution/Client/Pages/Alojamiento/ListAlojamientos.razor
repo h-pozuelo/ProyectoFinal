@@ -1,4 +1,5 @@
-﻿@page "/listalojamientos"
+﻿@page "/"
+@page "/listalojamientos"
 @using Shared.DataTransferObjects
 @using Shared.Services
 @using Microsoft.AspNetCore.Components.Authorization
@@ -23,7 +24,10 @@ else
     <div class="container mt-4">
         @foreach (var alojamiento in alojamientos)
         {
-            <Card alojamiento="@alojamiento" />
+            <NavLink href="@($"/detailsalojamiento/{alojamiento.Id}")"
+                     style="color: inherit; text-decoration: none;">
+                <Card alojamiento="alojamiento" />
+            </NavLink>
         }
     </div>
 }

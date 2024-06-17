@@ -60,5 +60,19 @@ namespace Server.Controllers
             return Ok();
         }
 
+        [HttpGet("GetAlquileresByAlojamiento/{id}")]
+        public async Task<IActionResult> GetAlquileresByAlojamiento(int id)
+        {
+            var result = await _alquilerService.GetAlquileresByAlojamiento(id);
+            return Ok(result);
+        }
+
+        [HttpGet("GetAlquileresByUser/{id}")]
+        public async Task<IActionResult> GetAlquileresByUser(string id)
+        {
+            var result = await _alquilerService.GetAlquileresByUser(id);
+            return Ok(result);
+        }
+
     }
 }
