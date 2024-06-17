@@ -22,7 +22,7 @@ namespace Client.Services
         {
             using (var content = new MultipartFormDataContent())
             {
-                using (var stream = new StreamContent(image.OpenReadStream()))
+                using (var stream = new StreamContent(image.OpenReadStream(maxAllowedSize: long.MaxValue)))
                 {
                     stream.Headers.ContentType = MediaTypeHeaderValue.Parse(image.ContentType);
 
