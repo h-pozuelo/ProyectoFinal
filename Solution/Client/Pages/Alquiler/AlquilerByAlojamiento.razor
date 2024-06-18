@@ -6,38 +6,42 @@
 @inject AuthenticationStateProvider StateProvider
 @inject IAlquilerService alquilerService
 
-<h3>Alquileres</h3>
+<div class="card mb-3">
+    <div class="card-body">
+        <h3 class="card-title">Alquileres</h3>
 
+        <hr />
 
-
-@if (Alquileres != null)
-{
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Inquilino</th>
-                <th>Fecha de Inicio</th>
-                <th>Fecha de Fin</th>
-                <th>Precio Total</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var alquiler in Alquileres)
-            {
-                <Fila alquiler="alquiler" />
-            }
-            <tr>
-                <td colspan="4" style="background-color:khaki">Ganancia Total de este alojamiento: @TotalPrecioAlquileres €</td>
-            </tr>
-        </tbody>
-    </table>
-}
-else
-{
-    <p>No hay alquileres para este alojamiento</p>
-}
-
-
+        @if (!(Alquileres == null || Alquileres.Count() == 0))
+        {
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Inquilino</th>
+                        <th>Fecha de Inicio</th>
+                        <th>Fecha de Fin</th>
+                        <th>Precio Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var alquiler in Alquileres)
+                    {
+                        <Fila alquiler="alquiler" />
+                    }
+                    <tr>
+                        <td colspan="4" style="background-color:khaki" class="text-end">Ganancia Total de este alojamiento: @TotalPrecioAlquileres €</td>
+                    </tr>
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-warning">
+                <p>No hay alquileres para este alojamiento</p>
+            </div>
+        }
+    </div>
+</div>
 
 @code {
     [Parameter] public int id { get; set; }

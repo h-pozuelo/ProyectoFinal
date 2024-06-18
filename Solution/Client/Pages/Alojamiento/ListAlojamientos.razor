@@ -1,5 +1,4 @@
-﻿@page "/"
-@page "/listalojamientos"
+﻿@page "/listalojamientos"
 @using Shared.DataTransferObjects
 @using Shared.Services
 @using Microsoft.AspNetCore.Components.Authorization
@@ -7,30 +6,33 @@
 @inject NavigationManager navigationManager
 
 
+<div class="card mb-3">
+    <div class="card-body">
+        <h3 class="card-title">Lista de Alojamientos</h3>
 
+        <hr />
 
-<h3>ListAlojamientos</h3>
-
-@if (alojamientos == null)
-{
-    <p>Cargando alojamientos...</p>
-}
-else if (!alojamientos.Any())
-{
-    <p>No hay alojamientos disponibles.</p>
-}
-else
-{
-    <div class="container mt-4">
-        @foreach (var alojamiento in alojamientos)
+        @if (alojamientos == null)
         {
-            <NavLink href="@($"/detailsalojamiento/{alojamiento.Id}")"
-                     style="color: inherit; text-decoration: none;">
-                <Card alojamiento="alojamiento" />
-            </NavLink>
+            <div class="alert alert-info" role="alert">
+                <p>Cargando alojamientos...</p>
+            </div>
+        }
+        else if (!alojamientos.Any())
+        {
+            <div class="alert alert-warning" role="alert">
+                <p>No hay alojamientos disponibles.</p>
+            </div>
+        }
+        else
+        {
+            @foreach (var alojamiento in alojamientos)
+            {
+                <Card alojamiento="alojamiento" url="@($"/detailsalojamiento/{alojamiento.Id}")" />
+            }
         }
     </div>
-}
+</div>
 
 @code {
     private IEnumerable<AlojamientoDto> alojamientos;

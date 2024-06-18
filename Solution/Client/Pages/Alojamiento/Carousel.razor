@@ -1,4 +1,4 @@
-﻿<div id="carouselExampleAutoplaying" class="carousel carousel-dark slide" data-bs-ride="carousel">
+﻿<div id="carouselExampleAutoplaying" class="carousel carousel-dark slide bg-light" data-bs-ride="carousel">
     <div class="carousel-indicators">
         @for (int i = 0; i < imagenes.Count(); i++)
         {
@@ -16,9 +16,9 @@
         @foreach (var imagen in imagenes)
         {
             <div class="carousel-item @(index == 0 ? "active" : "")">
-                <img src="@imagen" class="d-block w-100" alt="@imagen">
+                <img src="@imagen" class="d-block" alt="@imagen">
             </div>
-            @(index++)
+            index += 1;
         }
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">

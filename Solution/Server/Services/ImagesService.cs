@@ -10,7 +10,7 @@ namespace Server.Services
     {
         private readonly BlobServiceClient _serviceClient;
 
-        private readonly List<string> allowedContentTypes = ["image/jpeg", "image/jpg", "image/png"];
+        private readonly List<string> allowedContentTypes = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
 
         public ImagesService(BlobServiceClient serviceClient)
         {

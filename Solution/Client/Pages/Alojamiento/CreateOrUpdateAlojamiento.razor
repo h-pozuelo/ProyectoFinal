@@ -1,5 +1,6 @@
 ﻿@page "/CreateOrUpdateAlojamiento/{id:int?}"
 @using Client.Services
+@using Client.Pages
 @using Shared.DataTransferObjects
 @using Shared.Services
 @using Shared.Models
@@ -12,20 +13,24 @@
 
 
 
-<div class="card">
+<div class="card mb-3">
     <div class="card-body">
-        <h3>@(IsEdit ? "Actualizar Alojamiento" : "Crear Alojamiento")</h3>
+        <h3 class="card-title">@(IsEdit ? "Actualizar Alojamiento" : "Crear Alojamiento")</h3>
+
+        <hr />
+
+        @if (IsEdit && !(imagenesList == null || imagenesList.Count() == 0))
+        {
+            <Carousel imagenes="imagenesList" />
+            <hr />
+        }
+
         <EditForm Model="CreateUpdateModel" OnValidSubmit="CreateOrUpdate">
             <DataAnnotationsValidator />
             <ValidationSummary />
 
             <InputNumber id="Id" @bind-Value="CreateUpdateModel.Id" hidden />
-            <InputText id="IdPropietario" @bind-Value="CreateUpdateModel.IdPropietario" readonly />
-
-            @if (IsEdit && !(imagenesList == null || imagenesList.Count() == 0))
-            {
-                <Carousel imagenes="imagenesList" />
-            }
+            <InputText id="IdPropietario" @bind-Value="CreateUpdateModel.IdPropietario" hidden />
 
             <div class="form-group mb-3">
                 <label for="imagenesUpload">Fotos</label>
@@ -39,27 +44,15 @@
             </div>
 
             <div class="form-group mb-3">
+                <label for="Descripcion">Descripcion</label>
+                <InputText id="Descripcion" class="form-control" @bind-Value="CreateUpdateModel.Descripcion" />
+                <ValidationMessage For="@(() => CreateUpdateModel.Descripcion)" />
+            </div>
+
+            <div class="form-group mb-3">
                 <label for="Direccion">Dirección</label>
                 <InputText id="Direccion" class="form-control" @bind-Value="CreateUpdateModel.Direccion" />
                 <ValidationMessage For="@(() => CreateUpdateModel.Direccion)" />
-            </div>
-
-            <div class="form-group mb-3">
-                <label for="NumeroHabitaciones">Numero de Habitaciones</label>
-                <InputNumber id="NumeroHabitaciones" class="form-control" @bind-Value="CreateUpdateModel.NumeroHabitaciones" />
-                <ValidationMessage For="@(() => CreateUpdateModel.NumeroHabitaciones)" />
-            </div>
-
-            <div class="form-group mb-3">
-                <label for="CapacidadInvitados">Capacidad de Invitados</label>
-                <InputNumber id="CapacidadInvitados" class="form-control" @bind-Value="CreateUpdateModel.CapacidadInvitados" />
-                <ValidationMessage For="@(() => CreateUpdateModel.CapacidadInvitados)" />
-            </div>
-
-            <div class="form-group mb-3">
-                <label for="PrecioNoche">Precio por Noche</label>
-                <InputNumber id="PrecioNoche" class="form-control" @bind-Value="CreateUpdateModel.PrecioNoche" />
-                <ValidationMessage For="@(() => CreateUpdateModel.PrecioNoche)" />
             </div>
 
             <div class="form-group mb-3">
@@ -107,23 +100,27 @@
                 <ValidationMessage For="@(() => CreateUpdateModel.NombreCiudad)" />
             </div>
 
-            @* La fecha de publicación es inicializada en el Back, así que no es necesario añadir un control de fecha para ello *@
-            @* <div class="form-group mb-3">
-            <label for="FechaPublicacion">Fecha de Publicacion</label>
-            <InputDate id="FechaPublicacion" class="form-control" @bind-Value="CreateUpdateModel.FechaPublicacion" />
-            <ValidationMessage For="@(() => CreateUpdateModel.FechaPublicacion)" />
-            </div> *@
-
             <div class="form-group mb-3">
-                <label for="Descripcion">Descripcion</label>
-                <InputText id="Descripcion" class="form-control" @bind-Value="CreateUpdateModel.Descripcion" />
-                <ValidationMessage For="@(() => CreateUpdateModel.Descripcion)" />
+                <label for="NumeroHabitaciones">Numero de Habitaciones</label>
+                <InputNumber id="NumeroHabitaciones" class="form-control" @bind-Value="CreateUpdateModel.NumeroHabitaciones" />
+                <ValidationMessage For="@(() => CreateUpdateModel.NumeroHabitaciones)" />
             </div>
 
+            <div class="form-group mb-3">
+                <label for="CapacidadInvitados">Capacidad de Invitados</label>
+                <InputNumber id="CapacidadInvitados" class="form-control" @bind-Value="CreateUpdateModel.CapacidadInvitados" />
+                <ValidationMessage For="@(() => CreateUpdateModel.CapacidadInvitados)" />
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="PrecioNoche">Precio por Noche</label>
+                <InputNumber id="PrecioNoche" class="form-control" @bind-Value="CreateUpdateModel.PrecioNoche" />
+                <ValidationMessage For="@(() => CreateUpdateModel.PrecioNoche)" />
+            </div>
 
             <hr />
 
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-end">
                 <button type="submit" class="btn btn-outline-primary">Guardar</button>
             </div>
 

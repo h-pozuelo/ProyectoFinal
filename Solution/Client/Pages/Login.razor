@@ -5,6 +5,7 @@
 @inject NavigationManager NavigationManager
 @using Microsoft.AspNetCore.Authorization
 @attribute [AllowAnonymous]
+@using System.Web
 
 @if (showErrors)
 {
@@ -53,7 +54,14 @@
 
         var result = await AuthenticationService.Login(loginModel);
 
-        if (result.IsAuthenticationSuccessful) NavigationManager.NavigateTo(returnUrl);
+        if (result.IsAuthenticationSuccessful)
+        {
+            var uriBuilder = new UriBuilder(NavigationManager.Uri);
+            var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
+            var returnUrl = queryString["returnUrl"] ?? "/";
+
+            NavigationManager.NavigateTo(returnUrl);
+        }
 
         error = result.ErrorMessage!;
         showErrors = true;

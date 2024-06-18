@@ -7,46 +7,53 @@
 @inject IAlquilerService alquilerService
 @inject IAlojamientoService alojamientoService
 
-<h3>Crear Alquiler</h3>
+<div class="card mb-3">
+    <div class="card-body">
+        <h3 class="card-title">Crear Alquiler</h3>
 
-<EditForm Model="NewAlquilerModel" OnValidSubmit="CreateNewAlquiler">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
+        <hr />
 
-    <InputNumber @bind-Value="@NewAlquilerModel.IdAlojamiento" class="form-control" readonly hidden />
-    <InputText @bind-Value="@NewAlquilerModel.IdInquilino" class="form-control" readonly hidden />
+        <EditForm Model="NewAlquilerModel" OnValidSubmit="CreateNewAlquiler">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
 
-    <div class="form-group row">
-        <div class="col">
-            <label for="fechaInicio">Fecha de Inicio</label>
-            <InputDate @bind-Value="NewAlquilerModel.FechaInicio" class="form-control" id="fechaInicio" @oninput="OnFechaInicioChanged" />
-            <ValidationMessage For="@(() => NewAlquilerModel.FechaInicio)" />
-        </div>
+            <InputNumber @bind-Value="@NewAlquilerModel.IdAlojamiento" class="form-control" readonly hidden />
+            <InputText @bind-Value="@NewAlquilerModel.IdInquilino" class="form-control" readonly hidden />
 
-        <div class="col">
-            <label for="fechaFin">Fecha de Fin</label>
-            <InputDate @bind-Value="NewAlquilerModel.FechaFin" class="form-control" id="fechaFin" @oninput="OnFechaFinChanged" />
-            <ValidationMessage For="@(() => NewAlquilerModel.FechaFin)" />
-        </div>
+            <div class="form-group mb-3 row">
+                <div class="col">
+                    <label for="fechaInicio">Fecha de Inicio</label>
+                    <InputDate @bind-Value="NewAlquilerModel.FechaInicio" class="form-control" id="fechaInicio" @oninput="OnFechaInicioChanged" />
+                    <ValidationMessage For="@(() => NewAlquilerModel.FechaInicio)" />
+                </div>
+
+                <div class="col">
+                    <label for="fechaFin">Fecha de Fin</label>
+                    <InputDate @bind-Value="NewAlquilerModel.FechaFin" class="form-control" id="fechaFin" @oninput="OnFechaFinChanged" />
+                    <ValidationMessage For="@(() => NewAlquilerModel.FechaFin)" />
+                </div>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="cantidadDias">Cantidad de Días</label>
+                <input type="number" Value="@cantidadDias" class="form-control" id="cantidadDias" readonly />
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="precioTotal">Precio Total</label>
+                <InputNumber @bind-Value="NewAlquilerModel.PrecioTotal" class="form-control" id="precioTotal" readonly />
+            </div>
+
+            <hr />
+
+            <div class="d-flex justify-content-between">
+                <button @onclick="GoBack" class="btn btn-secondary">Volver</button>
+                <button type="submit" class="btn btn-primary">Guardar Alquiler</button>
+            </div>
+
+        </EditForm>
     </div>
-
-    <div class="form-group">
-        <label for="cantidadDias">Cantidad de Días</label>
-        <input type="number" Value="@cantidadDias" class="form-control" id="cantidadDias" readonly />
-    </div>
-
-    <div class="form-group">
-        <label for="precioTotal">Precio Total</label>
-        <InputNumber @bind-Value="NewAlquilerModel.PrecioTotal" class="form-control" id="precioTotal" readonly />
-    </div>
-
-    <div class="form-group">
-        <button @onclick="GoBack" class="btn btn-secondary">Volver</button>
-        <button type="submit" class="btn btn-primary">Guardar Alquiler</button>
-    </div>
-
-
-</EditForm>
+</div>
 
 @code {
     [Parameter] public int id { get; set; }

@@ -6,38 +6,71 @@
 @inject NavigationManager navigationManager
 @inject ImagesService ImagesService
 
-<h3>Detalles del Alojamiento</h3>
+<h3 class="mb-3">Detalles del Alojamiento</h3>
 
 @if (alojamiento == null)
 {
-    <p>Cargando detalles del alojamiento...</p>
+    <div class="alert alert-info" role="alert">
+        <p>Cargando detalles del alojamiento...</p>
+    </div>
 }
 else
 {
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-md-12">
-                <h2>@alojamiento.Titulo</h2>
-                @if (imagenesList == null || imagenesList.Count() == 0)
-                {
-                    <img src="https://img.freepik.com/vector-gratis/dibujo-casa-aislada_23-2147502091.jpg?size=626&ext=jpg"
-                         alt="Imagen del alojamiento" class="img-fluid rounded mb-3" />
-                }
-                else
-                {
-                    <Carousel imagenes="imagenesList" />
-                }
+    <div class="card mb-3">
+        <div class="card-body">
+            <div class="d-flex justify-content-between">
+                <h3 class="card-title">@alojamiento.Titulo</h3>
 
-                <p><strong>Dirección:</strong> @alojamiento.Direccion</p>
-                <p><strong>Numero de Habitaciones:</strong> @alojamiento.NumeroHabitaciones</p>
-                <p><strong>Capacidad de Invitados:</strong> @alojamiento.CapacidadInvitados</p>
-                <p><strong>Precio por Noche:</strong> @alojamiento.PrecioNoche €</p>
-                <p><strong>Comunidad Autónoma:</strong> @alojamiento.NombreComunidad</p>
-                <p><strong>Provincia:</strong> @alojamiento.NombreProvincia</p>
-                <p><strong>Ciudad:</strong> @alojamiento.NombreCiudad</p>
-                <p><strong>Fecha de Publicación:</strong> @alojamiento.FechaPublicacion.ToShortDateString()</p>
-                <p><strong>Descripción:</strong> @alojamiento.Descripcion</p>
+                <button type="button" class="btn btn-lg btn-success">@alojamiento.PrecioNoche € / noche</button>
+            </div>
+
+            <hr />
+
+            @if (!(imagenesList == null || imagenesList.Count() == 0))
+            {
+                <Carousel imagenes="@imagenesList" />
+                <hr />
+            }
+            else
+            {
+                <img src="https://img.freepik.com/vector-gratis/dibujo-casa-aislada_23-2147502091.jpg?size=626&ext=jpg"
+                     alt="Imagen del alojamiento" class="img-fluid rounded mb-3" />
+            }
+
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <small class="text-body-secondary text-decoration-underline">Descripción</small>
+                            <p class="card-text" style="white-space: pre-line;">@(alojamiento.Descripcion)</p>
+                        </div>
+
+                        <p class="card-text"><small class="text-body-secondary">Publicada en @alojamiento.FechaPublicacion.ToShortDateString()</small></p>
+                    </div>
+
+                    <small class="text-body-secondary text-decoration-underline">Número de Habitaciones</small>
+                    <p class="card-text">@alojamiento.NumeroHabitaciones</p>
+
+                    <small class="text-body-secondary text-decoration-underline">Capacidad de Invitados</small>
+                    <p class="card-text">@alojamiento.CapacidadInvitados</p>
+
+                    <small class="text-body-secondary text-decoration-underline">Dirección</small>
+                    <p class="card-text">@alojamiento.Direccion</p>
+
+                    <small class="text-body-secondary text-decoration-underline">Comunidad Autónoma</small>
+                    <p class="card-text">@alojamiento.NombreComunidad</p>
+
+                    <small class="text-body-secondary text-decoration-underline">Provincia</small>
+                    <p class="card-text">@alojamiento.NombreProvincia</p>
+
+                    <small class="text-body-secondary text-decoration-underline">Ciudad</small>
+                    <p class="card-text">@alojamiento.NombreCiudad</p>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between">
                 <button @onclick="GoBack" class="btn btn-secondary">Volver</button>
+
                 <button @onclick="CreateAlquiler" class="btn btn-primary">Crear Alquiler</button>
             </div>
         </div>

@@ -4,26 +4,55 @@
 @inject ImagesService ImagesService
 @inject IAlquilerService AlquilerService
 
+@if (idUsuario != null && idUsuario != "")
+{
+    <a id="btnAlquileres" href="@($"/alquilerByAlojamiento/{alojamiento.Id}")"
+       class="btn btn-primary">Ver Alquileres</a>
+}
 
-<div class="row mb-4 border rounded p-3">
-    <div class="col-md-4">
-        <img src="@(image == "" ? "https://img.freepik.com/vector-gratis/dibujo-casa-aislada_23-2147502091.jpg?size=626&ext=jpg" : image)"
-             alt="Imagen del alojamiento" class="img-fluid rounded" />
-    </div>
-    <div class="col-md-8">
-        <h4>@alojamiento.Titulo</h4>
-        <hr />
-        <p><strong>Fecha de Publicación:</strong> @alojamiento.FechaPublicacion.ToShortDateString()</p>
-        <p><strong>Numero de Habitaciones:</strong> @alojamiento.NumeroHabitaciones</p>
-        <p><strong>Capacidad de Invitados:</strong> @alojamiento.CapacidadInvitados</p>
-        <p><strong>Precio por Noche:</strong> @alojamiento.PrecioNoche €</p>
-        <p><strong>Comunidad Autónoma:</strong> @alojamiento.NombreComunidad</p>
-        <p><strong>Descripción:</strong> @alojamiento.Descripcion</p>
-        @if (idUsuario != null && idUsuario != "")
-        {
-            <p class="card-text"><small class="text-background-secondary">@count @(count == 1 ? "vez" : "veces") alquilada.</small></p>
-        }
-    </div>
+<div class="card mb-3">
+    <NavLink href="@url" class="text-decoration-none" style="color: inherit;">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="@(image == "" ? "https://img.freepik.com/vector-gratis/dibujo-casa-aislada_23-2147502091.jpg?size=626&ext=jpg" : image)"
+                     alt="Imagen del alojamiento" class="img-fluid rounded-start" />
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <h5 class="card-title">@alojamiento.Titulo</h5>
+
+                        @if (idUsuario != null && idUsuario != "")
+                        {
+                            <p class="card-text"><small class="text-body-secondary">@count @(count == 1 ? "vez" : "veces") alquilada.</small></p>
+                        }
+                    </div>
+
+                    <hr />
+
+                    <small class="text-body-secondary text-decoration-underline">Descripción</small>
+                    <p class="card-text" style="white-space: pre-line;">@(alojamiento.Descripcion)...</p>
+
+                    <small class="text-body-secondary text-decoration-underline">Dormitorios</small>
+                    <p class="card-text">@alojamiento.NumeroHabitaciones</p>
+
+                    <small class="text-body-secondary text-decoration-underline">Capacidad</small>
+                    <p class="card-text">@alojamiento.CapacidadInvitados</p>
+
+                    <small class="text-body-secondary text-decoration-underline">Ubicación</small>
+                    <p class="card-text">@alojamiento.NombreComunidad</p>
+
+                    <div class="d-flex justify-content-between">
+                        <p class="card-text"><small class="text-body-secondary">Publicada en @alojamiento.FechaPublicacion.ToShortDateString()</small></p>
+
+                        <button type="button" class="btn btn-success">@alojamiento.PrecioNoche € / noche</button>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </NavLink>
 </div>
 
 @code {
@@ -33,6 +62,9 @@
 
     [Parameter]
     public string? idUsuario { get; set; }
+
+    [Parameter]
+    public string? url { get; set; } = "#";
 
     private int count = 0;
 

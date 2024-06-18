@@ -9,35 +9,36 @@
 
 
 
-<div class="d-flex justify-content-between">
-    <h3>ListAlojamientoByUser</h3>
-    <a href="/createorupdatealojamiento" class="btn btn-primary">Crear alojamiento</a>
-</div>
+<div class="card mb-3">
+    <div class="card-body">
+        <div class="d-flex justify-content-between">
+            <h3>Mis Alojamientos</h3>
+            <a href="/createorupdatealojamiento" class="btn btn-outline-primary"><i class="bi bi-house-add"></i> Crear alojamiento</a>
+        </div>
 
-@if (alojamientos == null)
-{
-    <p>Cargando alojamientos...</p>
-}
-else if (!alojamientos.Any())
-{
-    <p>No hay alojamientos disponibles.</p>
-}
-else
-{
-    <div class="container mt-4">
-        @foreach (var alojamiento in alojamientos)
+        <hr />
+
+        @if (alojamientos == null)
         {
-            <div class="border-2">
-                <NavLink href="@($"/createorupdatealojamiento/{alojamiento.Id}")"
-                         style="color: inherit; text-decoration: none;">
-                    <Card alojamiento="alojamiento" idUsuario="idUsuario" />
-                </NavLink>
-                <NavLink href="@($"/alquilerByAlojamiento/{alojamiento.Id}")"
-                         class="btn btn-primary">Ver Alquileres</NavLink>
+            <div class="alert alert-info" role="alert">
+                <p>Cargando alojamientos...</p>
             </div>
         }
+        else if (!alojamientos.Any())
+        {
+            <div class="alert alert-warning" role="alert">
+                <p>No hay alojamientos disponibles.</p>
+            </div>
+        }
+        else
+        {
+            @foreach (var alojamiento in alojamientos)
+            {
+                <Card alojamiento="alojamiento" idUsuario="idUsuario" url="@($"/createorupdatealojamiento/{alojamiento.Id}")" />
+            }
+        }
     </div>
-}
+</div>
 
 @code {
     private IEnumerable<AlojamientoDto> alojamientos;

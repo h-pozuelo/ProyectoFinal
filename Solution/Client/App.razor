@@ -1,5 +1,4 @@
 ﻿@using Microsoft.AspNetCore.Components.Authorization
-@using Client.Pages
 @inject NavigationManager Navigation
 @* <Router AppAssembly="@typeof(App).Assembly">
     <Found Context="routeData">
@@ -18,7 +17,10 @@
     <Found Context="routeData">
         <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
             <NotAuthorized>
-                <RedirectionComponent returnUrl="@Navigation.ToBaseRelativePath(Navigation.Uri)" />
+                @{
+                    string returnUrl = Navigation.ToBaseRelativePath(Navigation.Uri);
+                    Navigation.NavigateTo($"/login?returnUrl={returnUrl}");
+                }
             </NotAuthorized>
         </AuthorizeRouteView>
     </Found>
