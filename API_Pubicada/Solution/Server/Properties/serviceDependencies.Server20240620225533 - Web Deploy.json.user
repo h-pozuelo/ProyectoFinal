@@ -1,0 +1,34 @@
+{
+  "dependencies": {
+    "apis1": {
+      "restored": true,
+      "restoreTime": "2024-06-20T20:57:51.3095856Z"
+    },
+    "secrets1": {
+      "restored": true,
+      "restoreTime": "2024-06-20T20:58:20.5308746Z"
+    }
+  },
+  "parameters": {
+    "secrets1.resourceGroupName": {
+      "Name": "secrets1.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "ResourceGroupProjectF"
+    },
+    "apis1.resourceGroupName": {
+      "Name": "apis1.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "ResourceGroupProjectF"
+    },
+    "apis1.subscriptionId": {
+      "Name": "apis1.subscriptionId",
+      "Type": "subscription",
+      "Value": "636787c5-6754-4536-a0b9-31afdeabd2b8"
+    },
+    "secrets1.subscriptionId": {
+      "Name": "secrets1.subscriptionId",
+      "Type": "subscription",
+      "Value": "636787c5-6754-4536-a0b9-31afdeabd2b8"
+    }
+  }
+}
