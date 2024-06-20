@@ -20,7 +20,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+//builder.Services.AddSwaggerGen();
+
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Alquileres API", Version = "1" });
+});
 
 // Recupera del fichero "~/appsettings.json" la cadena de conexión "DefaultConnection" para ser utilizada en nuestro contexto de base de datos
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -111,7 +116,10 @@ if (app.Environment.IsDevelopment())
     db?.Database.EnsureCreated();
 
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Alquileres API V1");
+    });
 }
 
 app.UseHttpsRedirection();
