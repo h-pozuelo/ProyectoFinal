@@ -1,9 +1,10 @@
 ﻿.carousel-item {
-    height: 500px;
+    height: 25vw;
     width: 100%;
 }
 
     .carousel-item img {
+        object-fit:contain;
         margin: 0 auto;
         height: 100%;
         width: auto;

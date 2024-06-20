@@ -16,7 +16,7 @@
         @foreach (var imagen in imagenes)
         {
             <div class="carousel-item @(index == 0 ? "active" : "")">
-                <img src="@imagen" class="d-block" alt="@imagen">
+                <img src="@imagen" class="d-block img-fluid" alt="@imagen">
             </div>
             index += 1;
         }
