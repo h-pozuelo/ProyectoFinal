@@ -1,9 +1,104 @@
 ﻿@page "/"
 @using Microsoft.AspNetCore.Authorization
 @attribute [AllowAnonymous]
+@inject IJSRuntime JSRuntime
 
-<PageTitle>Home</PageTitle>
+<section class="section-carousel mb-3">
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="./images/fbc7ee9fb38b18e69d4b438d2ee93345.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2>Descubre tu refugio ideal</h2>
+                    <p>Explora una amplia gama de alojamientos únicos en destinos de ensueño. Desde acogedores apartamentos urbanos hasta lujosas villas frente al mar, encuentra el refugio perfecto para tu próxima escapada.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="./images/habitacion-terraza-vistas-hotel-mar-y-sol-prestige-hotels-roses-1677492415.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2>Reserva fácil y segura</h2>
+                    <p>Facilitamos tu búsqueda y reserva de alojamientos con nuestro sistema intuitivo y seguro. Con opciones de pago flexible y atención al cliente dedicada, garantizamos una experiencia sin complicaciones.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="./images/habitacio-doble-superior-adaptada-2172560.avif" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2>Experiencias inolvidables, desde tu puerta hasta el mundo</h2>
+                    <p>Conecta con destinos únicos y vive experiencias auténticas con nuestra plataforma. Ofrecemos desde alquileres locales hasta escapadas internacionales, asegurando que cada viaje sea memorable y personalizado.</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</section>
 
-<h1>Hello, world!</h1>
+<section class="section-promotions">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card text-white bg-dark mb-3">
+                    <div class="card-body">
+                        <h3 class="card-title">Encuentra tu alojamiento ideal</h3>
+                        <p class="card-text">Explora nuestra amplia selección de alojamientos.</p>
+                        <a href="/listalojamientos" class="btn btn-light">Buscar alojamiento</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card text-white bg-dark mb-3">
+                    <div class="card-body">
+                        <h3 class="card-title">Pon tu alojamiento en alquiler</h3>
+                        <p class="card-text">Gana dinero compartiendo tu propiedad con nuestros usuarios.</p>
+                        <a href="/createorupdatealojamiento" class="btn btn-light">Comenzar ahora</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-Welcome to your new app.
+<section class="section-reviews">
+    <div class="container">
+        <h2 class="text-center mb-4">Opiniones de nuestros usuarios</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-3">
+                    <div class="card-body row align-items-center">
+                        <div class="profile-img col col-auto">
+                            <img src="./images/thispersondoesnotexist2.jpg" class="rounded-circle img-fluid" alt="Foto de perfil">
+                        </div>
+                        <div class="col">
+                            <p class="card-text">"¡Excelente servicio! Nos encantó la estancia."</p>
+                            <p class="card-text"><small class="text-muted">Juan Pérez</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-3">
+                    <div class="card-body row align-items-center">
+                        <div class="profile-img col col-auto">
+                            <img src="./images/thispersondoesnotexist1.jpg" class="rounded-circle img-fluid" alt="Foto de perfil">
+                        </div>
+                        <div class="col">
+                            <p class="card-text">"Muy recomendado. La ubicación era perfecta."</p>
+                            <p class="card-text"><small class="text-muted">María González</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

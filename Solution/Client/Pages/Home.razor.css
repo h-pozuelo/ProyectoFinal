@@ -1,0 +1,56 @@
+﻿.carousel-item {
+    height: 50vh;
+    width: 100%;
+}
+
+    .carousel-item img {
+        object-fit: cover;
+        margin: 0 auto;
+        height: 100%;
+        width: auto;
+        filter: brightness(0.5)
+    }
+
+.section-promotions .card {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.section-promotions .card-body {
+    padding: 20px;
+}
+
+.section-promotions .card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.section-promotions .card-text {
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+.section-promotions .btn {
+    color: #764ba2;
+    background-color: #ffffff;
+    border: none;
+    /*border-radius: 25px;*/
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+}
+
+    .section-promotions .btn:hover {
+        background-color: #f8f9fa;
+    }
+
+.section-reviews .profile-img {
+    border-radius: 50%;
+}
+
+    .section-reviews .profile-img img {
+        width: 80px;
+        height: 80px;
+    }
