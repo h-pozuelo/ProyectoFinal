@@ -1,9 +1,11 @@
 ﻿@using Shared.DataTransferObjects
 @using Shared.Services
 @inject IUsuariosService UsuariosService
+@inject NavigationManager Navigation
+@inject IAlojamientoService AlojamientoService
 
 <tr>
-    <td>@nombreInquilino</td>
+    <td>@(url == "listalquileresbyuser" ? nombreAlojamiento : nombreInquilino)</td>
     <td>@alquiler.FechaInicio.ToShortDateString()</td>
     <td>@alquiler.FechaFin.ToShortDateString()</td>
     <td>@alquiler.PrecioTotal €</td>
@@ -12,9 +14,13 @@
 @code {
     [Parameter] public AlquilerDto alquiler { get; set; } = new AlquilerDto();
     private string nombreInquilino = "";
+    private string url = "";
+    private string nombreAlojamiento = "";
 
     protected override async Task OnInitializedAsync()
     {
         nombreInquilino = (await UsuariosService.GetNombreUsuario(alquiler.IdInquilino)).Element!;
+        url = Navigation.ToBaseRelativePath(Navigation.Uri);
+        nombreAlojamiento = (await AlojamientoService.GetAllAlojamientos()).FirstOrDefault(a => a.Id == alquiler.IdAlojamiento).Titulo;
     }
 }
