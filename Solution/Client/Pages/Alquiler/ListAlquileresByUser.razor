@@ -1,0 +1,65 @@
+﻿@page "/listalquileresbyuser"
+@using Shared.DataTransferObjects
+@using Shared.Services
+@using Microsoft.AspNetCore.Components.Authorization
+@inject IAlquilerService alquilerService
+@inject NavigationManager navigationManager
+@inject AuthenticationStateProvider StateProvider
+@inject IAlquilerService alquilerService
+
+
+
+<div class="card mb-3">
+    <div class="card-body">
+        <div class="d-flex justify-content-between">
+            <h3>Mis Alquileres</h3>
+        </div>
+
+        <hr />
+
+        @if (alquileres == null)
+        {
+            <div class="alert alert-info" role="alert">
+                <p>Cargando alquileres...</p>
+            </div>
+        }
+        else if (!alquileres.Any())
+        {
+            <div class="alert alert-warning" role="alert">
+                <p>No has alquilado ningún alojamiento.</p>
+            </div>
+        }
+        else
+        {
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Inquilino</th>
+                        <th>Fecha de Inicio</th>
+                        <th>Fecha de Fin</th>
+                        <th>Precio Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var alquiler in alquileres)
+                    {
+                        <Fila alquiler="alquiler" />
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
+
+@code {
+    private IEnumerable<AlquilerDto> alquileres;
+    private string idUsuario = "";
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        idUsuario = (await StateProvider.GetAuthenticationStateAsync()).User.FindFirst("Id")!.Value;
+
+        alquileres = await alquilerService.GetAlquileresByUser(idUsuario);
+    }
+}
